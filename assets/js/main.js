@@ -743,6 +743,37 @@
       });
   }
 
+  /* ---------- athlete mini widget (หน้าแรก) ---------- */
+  function renderAthleteMini() {
+    var host = $("[data-athlete-mini]");
+    if (!host || !CFG.athleteSheetCsvUrl) return;
+    var groups = (BLA.meta && BLA.meta.ageGroups) || ["U8", "U10", "U12", "U14"];
+    var themes = BLA.cardThemes || {};
+    var sep = CFG.athleteSheetCsvUrl.indexOf("?") > -1 ? "&" : "?";
+    fetch(CFG.athleteSheetCsvUrl + sep + "t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+      .then(function (text) {
+        var R = computeRoster(text);
+        if (!R) { host.innerHTML = '<div class="empty-state" style="padding:1.6rem">ยังไม่มีผู้ลงทะเบียน</div>'; return; }
+        var byAge = {};
+        groups.forEach(function (g) { byAge[g] = 0; });
+        R.list.forEach(function (r) {
+          var g = normAge(R.col.age > -1 ? r[R.col.age] : "");
+          if (byAge[g] != null) byAge[g]++;
+        });
+        host.innerHTML =
+          '<div class="am-total"><b>' + R.list.length + '</b><span>คน · ลงทะเบียนแล้ว</span></div>' +
+          '<div class="am-ages">' + groups.map(function (g) {
+            var th = themes[g] || { accent: "#2F80ED" };
+            return '<span class="am-chip" style="--c:' + esc(th.accent) + '"><i></i>' + esc(g) +
+              ' <b>' + (byAge[g] || 0) + '</b></span>';
+          }).join("") + "</div>";
+      })
+      .catch(function () {
+        host.innerHTML = '<div class="empty-state" style="padding:1.6rem">โหลดยอดลงทะเบียนไม่สำเร็จ</div>';
+      });
+  }
+
   /* ---------- facebook footer link ---------- */
   (function () {
     var a = $("[data-fb-link]");
@@ -760,6 +791,7 @@
   renderRegister();
   wireGenerator();
   renderAthleteStats();
+  renderAthleteMini();
   observeReveals(document);
   addEventListener("load", function () {
     $all(".reveal:not(.in)").forEach(function (el) {

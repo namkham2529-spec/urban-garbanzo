@@ -554,3 +554,13 @@ table.standings tbody tr:hover{background:rgba(255,255,255,.02);}
 .athlete-table tr.zero td{color:var(--faint);}
 .athlete-table tr.zero td.ac-bar span{background:var(--line-strong);}
 @media (max-width:640px){ .athlete-table td.ac-bar,.athlete-table th:last-child{display:none;} }
+
+/* athlete mini widget (homepage) */
+.am-total{display:flex;align-items:baseline;gap:.6rem;margin:.4rem 0 1rem;}
+.am-total b{font-family:var(--font-data);font-weight:800;font-size:2.8rem;line-height:1;color:var(--ember);}
+.am-total span{font-size:.92rem;color:var(--ink-soft);}
+.am-ages{display:flex;flex-wrap:wrap;gap:.5rem;}
+.am-chip{--c:var(--blue);display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-data);font-weight:700;
+  font-size:.9rem;color:var(--ink-soft);border:1px solid var(--line);border-radius:999px;padding:.3rem .7rem;}
+.am-chip i{width:.6rem;height:.6rem;border-radius:50%;background:var(--c);flex:none;}
+.am-chip b{color:var(--ink);font-size:1rem;}
