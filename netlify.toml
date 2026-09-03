@@ -1,0 +1,12 @@
+# สแตติกล้วน — ไม่มี build · deploy โฟลเดอร์นี้ตรง ๆ
+# ระหว่างช่วงพัฒนา: ไม่แคชไฟล์ CSS/JS ค้าง เพื่อให้อัปเดตเห็นผลทันที
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>จำนวนนักกีฬา | บุรีรัมย์ลีก อะคาเดมี่</title>
+<meta name="description" content="สถิติจำนวนนักกีฬาที่ลงทะเบียนแล้ว แยกตามรุ่นอายุและสโมสร บุรีรัมย์ลีก อะคาเดมี่ 2026 อัปเดตสดจาก Google ชีต">
+<link rel="icon" href="assets/img/bla-league.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700;800;900&family=Sarabun:wght@400;600;700&family=Saira+Condensed:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/css/style.css?v=9">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="wrap nav">
+    <a class="brand" href="index.html">
+      <img src="assets/img/bla-league.png" alt="ตราสัญลักษณ์ บุรีรัมย์ลีก อะคาเดมี่">
+      <span class="brand-text"><span class="b-th">บุรีรัมย์ลีก อะคาเดมี่</span><span class="b-en">Buriram League Academy</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="เปิด/ปิดเมนู" aria-expanded="false" aria-controls="navlinks">☰</button>
+    <div class="nav-links" id="navlinks">
+      <a href="index.html">หน้าแรก</a>
+      <a href="clubs.html">สโมสร</a>
+      <a href="schedule.html">โปรแกรม</a>
+      <a href="standings.html">ตารางคะแนน</a>
+      <a href="results.html">ผลการแข่งขัน</a>
+      <a href="athletes.html">นักกีฬา</a>
+      <a href="history.html">ประวัติ</a>
+      <a class="cta" href="register.html">ลงทะเบียนนักกีฬา</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="section-sm" style="padding-top:3.5rem">
+    <div class="wrap">
+      <span class="eyebrow">ทะเบียนนักกีฬา</span>
+      <h1 style="font-size:clamp(2rem,5vw,3rem);margin:.5rem 0 .8rem">จำนวนนักกีฬาที่ลงทะเบียนแล้ว</h1>
+      <p class="lead">นับจากผู้ลงทะเบียนผ่านแบบฟอร์มของรายการ แยกตามรุ่นอายุและสโมสร ตัดชื่อซ้ำอัตโนมัติ ดึงสดจาก Google ชีตทุกครั้งที่เปิดหน้า</p>
+    </div>
+  </section>
+
+  <section class="section-sm" style="padding-top:0">
+    <div class="wrap">
+      <div data-athlete-stats>
+        <p class="pill-note">กำลังโหลด…</p>
+      </div>
+      <p class="pill-note" data-athlete-status style="margin-top:1.4rem"></p>
+      <p style="margin-top:1.4rem">
+        <a class="btn btn-ember" href="register.html">ลงทะเบียนนักกีฬา</a>
+        <a class="btn btn-ghost" href="id-cards.html">ออกบัตรประจำตัวนักกีฬา</a>
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/img/bla-league.png" alt="">
+        <div>
+          <strong>บุรีรัมย์ลีก อะคาเดมี่</strong>
+          <p>เวทีฟุตบอลเยาวชนของบุรีรัมย์และจังหวัดใกล้เคียง · ช่องทางสื่อสารกลางของ 12 สโมสรสมาชิก</p>
+          <a data-fb-link hidden class="fb-link" target="_blank" rel="noopener">เฟซบุ๊กบุรีรัมย์ลีก อะคาเดมี่ &rarr;</a>
+        </div>
+      </div>
+      <div>
+        <h4>การแข่งขัน</h4>
+        <a href="schedule.html">โปรแกรม (พร้อมสนาม)</a>
+        <a href="standings.html">ตารางคะแนน</a>
+        <a href="results.html">ผลการแข่งขัน</a>
+        <a href="clubs.html">ทำเนียบสโมสร</a>
+      </div>
+      <div>
+        <h4>นักกีฬา</h4>
+        <a href="register.html">ลงทะเบียนนักกีฬา</a>
+        <a href="athletes.html">จำนวนนักกีฬา</a>
+        <a href="id-cards.html">ออกบัตรประจำตัวนักกีฬา</a>
+        <a href="history.html">ประวัติความเป็นมา</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2569</span> บุรีรัมย์ลีก อะคาเดมี่ · Buriram League Academy</span>
+      <span>โปรแกรมอ้างอิงจากมติที่ประชุม อาจปรับเปลี่ยนได้ตามประกาศอย่างเป็นทางการ</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js?v=9"></script>
+<script src="assets/js/main.js?v=9"></script>
+</body>
+</html>

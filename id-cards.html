@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ออกบัตรประจำตัวนักกีฬา | บุรีรัมย์ลีก อะคาเดมี่</title>
+<meta name="description" content="เครื่องมือออกบัตรประจำตัวนักกีฬาบุรีรัมย์ลีก อะคาเดมี่ จากข้อมูล Google ชีต แยกสีตามรุ่นอายุ พร้อมสั่งพิมพ์">
+<link rel="icon" href="assets/img/bla-league.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700;800;900&family=Sarabun:wght@400;600;700&family=Saira+Condensed:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/css/style.css?v=9">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="wrap nav">
+    <a class="brand" href="index.html">
+      <img src="assets/img/bla-league.png" alt="ตราสัญลักษณ์ บุรีรัมย์ลีก อะคาเดมี่">
+      <span class="brand-text"><span class="b-th">บุรีรัมย์ลีก อะคาเดมี่</span><span class="b-en">Buriram League Academy</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="เปิด/ปิดเมนู" aria-expanded="false" aria-controls="navlinks">☰</button>
+    <div class="nav-links" id="navlinks">
+      <a href="index.html">หน้าแรก</a>
+      <a href="clubs.html">สโมสร</a>
+      <a href="schedule.html">โปรแกรม</a>
+      <a href="standings.html">ตารางคะแนน</a>
+      <a href="results.html">ผลการแข่งขัน</a>
+      <a href="athletes.html">นักกีฬา</a>
+      <a href="history.html">ประวัติ</a>
+      <a class="cta" href="register.html">ลงทะเบียนนักกีฬา</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="section-sm" style="padding-top:3.5rem">
+    <div class="wrap">
+      <span class="eyebrow">สำหรับฝ่ายจัดการแข่งขัน</span>
+      <h1 style="font-size:clamp(2rem,5vw,3rem);margin:.5rem 0 .8rem">ออกบัตรประจำตัวนักกีฬา</h1>
+      <p class="lead">หน้านี้ดึงข้อมูลผู้ลงทะเบียนล่าสุดจาก Google ชีตให้อัตโนมัติทันทีที่เปิด (มีคนลงทะเบียนใหม่ก็ขึ้นเอง) ระบบจะสร้างบัตรให้ทุกคน แยกสีตามรุ่นอายุ พร้อมรูปถ่าย แล้วสั่งพิมพ์เป็น PDF ได้ทันที — หากต้องการข้อมูลรอบใหม่ กด "ดึงข้อมูลล่าสุดอีกครั้ง" หรือวาง/อัปโหลด CSV เองก็ได้ (ข้อมูลทั้งหมดประมวลผลในเบราว์เซอร์ ไม่ถูกส่งออกที่ใด)</p>
+    </div>
+  </section>
+
+  <section class="section-sm" style="padding-top:0">
+    <div class="wrap">
+      <div class="gen-controls">
+        <textarea data-csv-input placeholder="วางข้อมูล CSV จาก Google ชีตที่นี่ (บรรทัดแรกเป็นหัวคอลัมน์)"></textarea>
+        <input type="file" data-csv-file accept=".csv,text/csv">
+        <button class="btn btn-primary" data-csv-run>สร้างบัตรจากข้อความที่วาง</button>
+        <button class="btn btn-ember" data-csv-fetch>ดึงข้อมูลล่าสุดจากชีต</button>
+        <button class="btn btn-ghost" data-csv-sample>ลองด้วยข้อมูลตัวอย่าง</button>
+        <span class="gen-hint" data-gen-status>รองรับหัวคอลัมน์จากชีต 'ทะเบียนนักกีฬา': ชื่อสโมสร · รุ่นอายุ (U8/U10/U12/U14) · ชื่อ-นามสกุลนักกีฬา · วันเดือนปีเกิด · เลขบัตร ปชช./เลขนักเรียน · เบอร์เสื้อ · ชื่อผู้ปกครอง · เบอร์ติดต่อผู้ปกครอง (เพิ่ม 'ลิงก์รูป' ได้ถ้ามีรูปถ่าย)</span>
+      </div>
+
+      <div class="filters" data-card-filter hidden>
+        <button class="chip" data-age="all" aria-pressed="true">ทุกรุ่น</button>
+        <button class="chip" data-age="U8" aria-pressed="false">U8</button>
+        <button class="chip" data-age="U10" aria-pressed="false">U10</button>
+        <button class="chip" data-age="U12" aria-pressed="false">U12</button>
+        <button class="chip" data-age="U14" aria-pressed="false">U14</button>
+      </div>
+
+      <div class="print-bar">
+        <button class="btn btn-ember" data-print>พิมพ์ / บันทึกเป็น PDF</button>
+        <span class="pill-note">เคล็ดลับ: กรองรุ่นอายุที่ต้องการก่อนพิมพ์ เพื่อพิมพ์บัตรทีละรุ่น</span>
+      </div>
+
+      <div class="card-sheet" data-cards></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/img/bla-league.png" alt="">
+        <div>
+          <strong>บุรีรัมย์ลีก อะคาเดมี่</strong>
+          <p>เวทีฟุตบอลเยาวชนของบุรีรัมย์และจังหวัดใกล้เคียง · ช่องทางสื่อสารกลางของ 12 สโมสรสมาชิก</p>
+          <a data-fb-link hidden class="fb-link" target="_blank" rel="noopener">เฟซบุ๊กบุรีรัมย์ลีก อะคาเดมี่ &rarr;</a>
+        </div>
+      </div>
+      <div>
+        <h4>การแข่งขัน</h4>
+        <a href="schedule.html">โปรแกรม (พร้อมสนาม)</a>
+        <a href="standings.html">ตารางคะแนน</a>
+        <a href="results.html">ผลการแข่งขัน</a>
+      <a href="athletes.html">นักกีฬา</a>
+        <a href="clubs.html">ทำเนียบสโมสร</a>
+      </div>
+      <div>
+        <h4>นักกีฬา</h4>
+        <a href="register.html">ลงทะเบียนนักกีฬา</a>
+        <a href="id-cards.html">ออกบัตรประจำตัวนักกีฬา</a>
+        <a href="history.html">ประวัติความเป็นมา</a>
+        <a href="about.html">เกี่ยวกับรายการ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2569</span> บุรีรัมย์ลีก อะคาเดมี่ · Buriram League Academy</span>
+      <span>โปรแกรมอ้างอิงจากมติที่ประชุม อาจปรับเปลี่ยนได้ตามประกาศอย่างเป็นทางการ</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js?v=9"></script>
+<script src="assets/js/main.js?v=9"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ลงทะเบียนนักกีฬา | บุรีรัมย์ลีก อะคาเดมี่</title>
+<meta name="description" content="ลงทะเบียนนักกีฬาบุรีรัมย์ลีก อะคาเดมี่ — นักกีฬากรอกข้อมูลเอง ข้อมูลเข้าสู่ Google ชีต เพื่อออกบัตรประจำตัวนักกีฬา">
+<link rel="icon" href="assets/img/bla-league.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700;800;900&family=Sarabun:wght@400;600;700&family=Saira+Condensed:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/css/style.css?v=9">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="wrap nav">
+    <a class="brand" href="index.html">
+      <img src="assets/img/bla-league.png" alt="ตราสัญลักษณ์ บุรีรัมย์ลีก อะคาเดมี่">
+      <span class="brand-text"><span class="b-th">บุรีรัมย์ลีก อะคาเดมี่</span><span class="b-en">Buriram League Academy</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="เปิด/ปิดเมนู" aria-expanded="false" aria-controls="navlinks">☰</button>
+    <div class="nav-links" id="navlinks">
+      <a href="index.html">หน้าแรก</a>
+      <a href="clubs.html">สโมสร</a>
+      <a href="schedule.html">โปรแกรม</a>
+      <a href="standings.html">ตารางคะแนน</a>
+      <a href="results.html">ผลการแข่งขัน</a>
+      <a href="athletes.html">นักกีฬา</a>
+      <a href="history.html">ประวัติ</a>
+      <a class="cta" href="register.html">ลงทะเบียนนักกีฬา</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="section-sm" style="padding-top:3.5rem">
+    <div class="wrap">
+      <span class="eyebrow ember">ลงทะเบียนนักกีฬา</span>
+      <h1 style="font-size:clamp(2rem,5vw,3rem);margin:.5rem 0 .8rem">นักกีฬาลงทะเบียนเอง เพื่อทำบัตรประจำตัว</h1>
+      <p class="lead">กรอกข้อมูลผ่านแบบฟอร์มด้านล่าง ข้อมูลจะเข้าสู่ Google ชีตของรายการโดยอัตโนมัติ จากนั้นฝ่ายจัดการแข่งขันจะดึงข้อมูลไปออกบัตรประจำตัวนักกีฬาแยกตามรุ่นอายุ</p>
+    </div>
+  </section>
+
+  <section class="section-sm" style="padding-top:0">
+    <div class="wrap">
+      <div data-register></div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">สำหรับผู้ดูแลระบบ</span>
+        <h2>เชื่อมฟอร์มในเว็บนี้เข้ากับ Google ชีต</h2>
+        <p class="lead">ฟอร์มด้านบนเป็นฟอร์มในเว็บ (โทนเดียวกับรายการ) ส่งข้อมูลผ่าน Apps Script ไปลง Google ชีต — ตั้งค่าครั้งเดียวด้วยไฟล์ <code>tools/registration-backend.gs</code></p>
+      </div>
+
+      <div class="steps" style="margin-bottom:2.4rem">
+        <div class="step"><p>เปิด <strong>script.google.com</strong> → โปรเจกต์ใหม่ → วางเนื้อหา <code>tools/registration-backend.gs</code> ทั้งหมด → บันทึก</p></div>
+        <div class="step"><p><strong>Deploy → New deployment → “Web app”</strong> · Execute as: <em>Me</em> · Who has access: <em>Anyone</em> → Deploy → อนุญาตสิทธิ์ → คัดลอก <strong>Web app URL</strong> (ลงท้าย <code>/exec</code>)</p></div>
+        <div class="step"><p>วาง URL นั้นที่ <code>config.registerEndpoint</code> ใน <code>assets/js/data.js</code> — ฟอร์มจะเริ่มส่งข้อมูลเข้าชีตทันที</p></div>
+        <div class="step"><p>เปิด URL <code>/exec</code> ในเบราว์เซอร์ 1 ครั้ง → จะสร้างชีต "ทะเบียนนักกีฬา" และแสดง <strong>ลิงก์ CSV</strong> สำหรับหน้า <a href="id-cards.html">ออกบัตรประจำตัวนักกีฬา</a></p></div>
+      </div>
+
+      <p class="pill-note" style="margin-bottom:2rem">ทางเลือก: ถ้าอยากใช้ Google Form แทน ให้สร้างฟอร์มเอง (ชื่อคำถาม = ชื่อคอลัมน์ในตารางด้านล่าง) แล้ววางลิงก์ embed ที่ <code>config.registerFormUrl</code></p>
+
+      <div class="table-wrap">
+        <table class="field-table">
+          <thead><tr><th>ชื่อคอลัมน์ (ให้ตรงกับชีต 'ทะเบียนนักกีฬา')</th><th>ใช้ทำอะไร</th><th>จำเป็น</th></tr></thead>
+          <tbody>
+            <tr><td><code>ชื่อสโมสร</code></td><td>เลือกจากรายการ 12 สโมสร (ให้ตรงกับทำเนียบ เพื่อดึงโลโก้)</td><td>ใช่</td></tr>
+            <tr><td><code>รุ่นอายุ</code></td><td>U8 / U10 / U12 / U14 — กำหนดสีบัตร</td><td>ใช่</td></tr>
+            <tr><td><code>ชื่อ-นามสกุลนักกีฬา</code></td><td>ชื่อบนบัตร</td><td>ใช่</td></tr>
+            <tr><td><code>วันเดือนปีเกิด</code></td><td>แสดงบนบัตร · ใช้คำนวณอายุ (คอลัมน์ 'อายุ' และ 'ตรวจสอบอายุ' ในชีตคำนวณให้เอง)</td><td>ใช่</td></tr>
+            <tr><td><code>เลขบัตร ปชช./เลขนักเรียน</code></td><td>ใช้เป็นเลขที่บัตร (ถ้าเว้นว่างจะออกเลขรันให้)</td><td>แนะนำ</td></tr>
+            <tr><td><code>เบอร์เสื้อ</code></td><td>หมายเลขเสื้อ</td><td>ไม่</td></tr>
+            <tr><td><code>ชื่อผู้ปกครอง</code></td><td>สำหรับติดต่อ (ไม่แสดงบนบัตร)</td><td>แนะนำ</td></tr>
+            <tr><td><code>เบอร์ติดต่อผู้ปกครอง</code></td><td>สำหรับติดต่อ (ไม่แสดงบนบัตร)</td><td>แนะนำ</td></tr>
+            <tr><td><code>ลิงก์รูปถ่ายนักกีฬา</code></td><td>ในฟอร์มเป็นช่อง<strong>อัปโหลดรูปถ่าย</strong> (บังคับ) — ระบบย่อขนาดแล้วบันทึกขึ้น Google Drive อัตโนมัติ คอลัมน์นี้ได้ลิงก์รูปมาเองโดยไม่ต้องกรอก</td><td>ใช่ (บังคับอัปโหลดในฟอร์ม)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="feature-grid" style="margin-top:2rem">
+        <div class="feature"><i>รูปแบบแข่งขัน</i><p>แข่ง 3 ควอเตอร์ นับผล 2 ควอเตอร์ · รุ่น 12–14 ปี ครึ่งละ 20 นาที · รุ่น 8–10 ปี ครึ่งละ 15 นาที</p></div>
+        <div class="feature"><i>กฎอายุ U14</i><p>ลงทะเบียนนักกีฬาอายุ 15 ปีได้ไม่จำกัดจำนวน แต่ลงสนามแข่งขันพร้อมกันได้ไม่เกิน 2 คนต่อทีมต่อนัด (มติที่ประชุม)</p></div>
+        <div class="feature"><i>ค่าสมัคร</i><p>500 บาท/สโมสร (เหมาจ่าย) — อนุมัติจากที่ประชุมแล้ว</p></div>
+      </div>
+
+      <p class="pill-note" style="margin-top:1.4rem">สีบัตรตามรุ่น: U8 เขียว · U10 น้ำเงิน · U12 ฟ้า · U14 ชมพู — ผสมโทนโลโก้บุรีรัมย์ลีก อะคาเดมี่</p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/img/bla-league.png" alt="">
+        <div>
+          <strong>บุรีรัมย์ลีก อะคาเดมี่</strong>
+          <p>เวทีฟุตบอลเยาวชนของบุรีรัมย์และจังหวัดใกล้เคียง · ช่องทางสื่อสารกลางของ 12 สโมสรสมาชิก</p>
+          <a data-fb-link hidden class="fb-link" target="_blank" rel="noopener">เฟซบุ๊กบุรีรัมย์ลีก อะคาเดมี่ &rarr;</a>
+        </div>
+      </div>
+      <div>
+        <h4>การแข่งขัน</h4>
+        <a href="schedule.html">โปรแกรม (พร้อมสนาม)</a>
+        <a href="standings.html">ตารางคะแนน</a>
+        <a href="results.html">ผลการแข่งขัน</a>
+      <a href="athletes.html">นักกีฬา</a>
+        <a href="clubs.html">ทำเนียบสโมสร</a>
+      </div>
+      <div>
+        <h4>นักกีฬา</h4>
+        <a href="register.html">ลงทะเบียนนักกีฬา</a>
+        <a href="id-cards.html">ออกบัตรประจำตัวนักกีฬา</a>
+        <a href="history.html">ประวัติความเป็นมา</a>
+        <a href="about.html">เกี่ยวกับรายการ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2569</span> บุรีรัมย์ลีก อะคาเดมี่ · Buriram League Academy</span>
+      <span>โปรแกรมอ้างอิงจากมติที่ประชุม อาจปรับเปลี่ยนได้ตามประกาศอย่างเป็นทางการ</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js?v=9"></script>
+<script src="assets/js/main.js?v=9"></script>
+</body>
+</html>

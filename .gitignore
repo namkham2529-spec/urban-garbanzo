@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+.netlify/
+node_modules/
+
+# build/deploy scratch
+bla-site.zip
+*.ps1

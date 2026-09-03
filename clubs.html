@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ทำเนียบสโมสร | บุรีรัมย์ลีก อะคาเดมี่</title>
+<meta name="description" content="ทำเนียบ 12 สโมสรสมาชิกบุรีรัมย์ลีก อะคาเดมี่ — โลโก้แต่ละทีมลิงก์ไปยังเฟซบุ๊กของสโมสร">
+<link rel="icon" href="assets/img/bla-league.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700;800;900&family=Sarabun:wght@400;600;700&family=Saira+Condensed:wght@600;700&display=swap">
+<link rel="stylesheet" href="assets/css/style.css?v=9">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="wrap nav">
+    <a class="brand" href="index.html">
+      <img src="assets/img/bla-league.png" alt="ตราสัญลักษณ์ บุรีรัมย์ลีก อะคาเดมี่">
+      <span class="brand-text"><span class="b-th">บุรีรัมย์ลีก อะคาเดมี่</span><span class="b-en">Buriram League Academy</span></span>
+    </a>
+    <button class="nav-toggle" aria-label="เปิด/ปิดเมนู" aria-expanded="false" aria-controls="navlinks">☰</button>
+    <div class="nav-links" id="navlinks">
+      <a href="index.html">หน้าแรก</a>
+      <a href="clubs.html">สโมสร</a>
+      <a href="schedule.html">โปรแกรม</a>
+      <a href="standings.html">ตารางคะแนน</a>
+      <a href="results.html">ผลการแข่งขัน</a>
+      <a href="athletes.html">นักกีฬา</a>
+      <a href="history.html">ประวัติ</a>
+      <a class="cta" href="register.html">ลงทะเบียนนักกีฬา</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="section-sm" style="padding-top:3.5rem">
+    <div class="wrap">
+      <span class="eyebrow">ทำเนียบสโมสร</span>
+      <h1 style="font-size:clamp(2rem,5vw,3rem);margin:.5rem 0 .8rem">12 สโมสรสมาชิก</h1>
+      <p class="lead">แตะโลโก้เพื่อไปยังเฟซบุ๊กของแต่ละสโมสร ฤดูกาลแรกปี 2567 เปิดฉากด้วยหกทีม ก่อนขยายเป็นสิบสองในปี 2568 เมื่อโซลกับเกรียรัมย์แยกกันลงเป็นคนละทีม ราชสีมาเข้าร่วม พร้อมอีกสี่สโมสรใหม่</p>
+    </div>
+  </section>
+
+  <section class="section-sm" style="padding-top:0">
+    <div class="wrap">
+      <div class="roster-grid" data-roster></div>
+      <p class="pill-note" style="margin-top:1.4rem">ตราสัญลักษณ์เป็นทรัพย์สินของแต่ละสโมสร ใช้เพื่อการนำเสนอรายการแข่งขันเท่านั้น</p>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">รายละเอียดสโมสร</span>
+        <h2>ที่ตั้งและรุ่นที่เข้าร่วม</h2>
+      </div>
+      <div class="filters" data-club-filters>
+        <button class="chip" data-filter="all" aria-pressed="true">ทั้งหมด</button>
+        <button class="chip" data-filter="founding" aria-pressed="false">รุ่นก่อตั้ง 2567</button>
+        <button class="chip" data-filter="new" aria-pressed="false">เข้าร่วม 2568</button>
+        <button class="chip" data-filter="บุรีรัมย์" aria-pressed="false">บุรีรัมย์</button>
+        <button class="chip" data-filter="นครราชสีมา" aria-pressed="false">นครราชสีมา</button>
+      </div>
+      <div class="club-grid" data-clubs="all"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/img/bla-league.png" alt="">
+        <div>
+          <strong>บุรีรัมย์ลีก อะคาเดมี่</strong>
+          <p>เวทีฟุตบอลเยาวชนของบุรีรัมย์และจังหวัดใกล้เคียง · ช่องทางสื่อสารกลางของ 12 สโมสรสมาชิก</p>
+          <a data-fb-link hidden class="fb-link" target="_blank" rel="noopener">เฟซบุ๊กบุรีรัมย์ลีก อะคาเดมี่ &rarr;</a>
+        </div>
+      </div>
+      <div>
+        <h4>การแข่งขัน</h4>
+        <a href="schedule.html">โปรแกรม (พร้อมสนาม)</a>
+        <a href="standings.html">ตารางคะแนน</a>
+        <a href="results.html">ผลการแข่งขัน</a>
+      <a href="athletes.html">นักกีฬา</a>
+        <a href="clubs.html">ทำเนียบสโมสร</a>
+      </div>
+      <div>
+        <h4>นักกีฬา</h4>
+        <a href="register.html">ลงทะเบียนนักกีฬา</a>
+        <a href="id-cards.html">ออกบัตรประจำตัวนักกีฬา</a>
+        <a href="history.html">ประวัติความเป็นมา</a>
+        <a href="about.html">เกี่ยวกับรายการ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2569</span> บุรีรัมย์ลีก อะคาเดมี่ · Buriram League Academy</span>
+      <span>โปรแกรมอ้างอิงจากมติที่ประชุม อาจปรับเปลี่ยนได้ตามประกาศอย่างเป็นทางการ</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/data.js?v=9"></script>
+<script src="assets/js/main.js?v=9"></script>
+</body>
+</html>
