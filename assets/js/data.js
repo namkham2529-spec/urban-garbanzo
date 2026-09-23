@@ -46,7 +46,7 @@ window.BLA = {
 
   /* fb = ลิงก์เฟซบุ๊กของสโมสร (ว่างไว้ = ยังไม่ลิงก์) */
   teams: [
-    { slug:"seven",           name:"เซเว่น",             en:"Seven Academy",               city:"อ.เมือง",         province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/search/top?q=seven%20academy", venue:"เซเว่น อะคาเดมี่" },
+    { slug:"seven",           name:"เซเว่น",             en:"Seven Academy",               city:"อ.เมือง",         province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/profile.php?id=100070551600359", venue:"เซเว่น อะคาเดมี่" },
     { slug:"soul",            name:"โซล",                en:"Soul Football Academy",       city:"อ.เมือง",         province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/profile.php?id=100088697600537", note:"ฤดูกาลแรกลงแข่งในนามทีมรวม โซล&เกรียรัมย์", venue:"สนามโซล" },
     { slug:"bualuang",        name:"บัวหลวง อะคาเดมี่",   en:"Bualuang Academy",            city:"บ้านบัว อ.เมือง", province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/jmunited", venue:"สนามบัวหลวง อะคาเดมี่" },
     { slug:"best",            name:"เบส",                en:"Best Academy",                city:"อ.คูเมือง",       province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/profile.php?id=100095125552441", venue:"สนามพงศ์พันธุ์อารีน่า" },
