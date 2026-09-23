@@ -215,6 +215,7 @@ ul{list-style:none;}
 .club-card .en{font-family:var(--font-data);font-size:.78rem;letter-spacing:.06em;
   text-transform:uppercase;color:var(--faint);margin-bottom:.15rem;}
 .club-card .loc{font-size:.9rem;color:var(--muted);}
+.club-card .venue{font-size:.82rem;color:var(--faint);margin-top:.15rem;}
 .tag{
   display:inline-block;margin-top:.45rem;
   font-family:var(--font-data);font-weight:700;letter-spacing:.08em;
@@ -226,6 +227,7 @@ ul{list-style:none;}
 .club-card .note{font-size:.82rem;color:var(--faint);margin-top:.4rem;}
 @media (max-width:900px){ .club-grid{grid-template-columns:repeat(2,1fr);} }
 @media (max-width:560px){ .club-grid{grid-template-columns:1fr;} }
+.venue-poster{width:100%;max-width:560px;display:block;margin:1.2rem auto 0;border-radius:var(--radius);border:1px solid var(--line);}
 
 /* filter chips */
 .filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.6rem;}
@@ -285,6 +287,15 @@ ul{list-style:none;}
 .match .m-name{font-weight:600;font-size:.96rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .match .vs{font-family:var(--font-data);font-weight:700;color:var(--faint);font-size:.8rem;letter-spacing:.1em;}
 .match .m-venue{grid-column:1 / -1;font-size:.8rem;color:var(--faint);}
+.match .m-times{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.35rem;}
+.match .m-time{font-family:var(--font-data);font-size:.72rem;color:var(--muted);
+  background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:999px;
+  padding:.15rem .55rem;}
+.match .m-time b{color:var(--text);font-weight:700;margin-right:.3rem;}
+.match .m-time.parent{color:var(--gold-soft);border-color:rgba(242,184,7,.32);background:rgba(242,184,7,.08);}
+.match .m-time.parent b{color:var(--gold-soft);}
+.round-note{margin:0;padding:.7rem 1.3rem;font-size:.84rem;color:var(--muted);
+  background:rgba(77,163,255,.06);border-bottom:1px solid var(--line);}
 @media (max-width:600px){
   .match{grid-template-columns:1fr auto 1fr;gap:.5rem;}
   .match .m-name{font-size:.86rem;}

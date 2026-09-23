@@ -26,8 +26,8 @@ window.BLA = {
     cadence: "แข่งทุก 2 สัปดาห์ · วันอาทิตย์",
     startDate: "อาทิตย์ 4 ตุลาคม 2569",
     endDate: "อาทิตย์ 7 มีนาคม 2570",
-    centralVenue: "สนามกีฬาจังหวัดบุรีรัมย์ (อ.เมือง)",
-    finalVenue: "สนามกีฬาจังหวัดบุรีรัมย์ (อ.เมือง)",
+    centralVenue: "สนามแฝดเขากระโดง (อบจ. บุรีรัมย์)",
+    finalVenue: "สนามแฝดเขากระโดง (อบจ. บุรีรัมย์)",
     kickoffTimes: "U14 10:00 · U12 11:00 · U10 13:00 · U8 14:00 น.",
     matchFormat: "แข่ง 3 ควอเตอร์ นับผลอย่างเป็นทางการ 2 ควอเตอร์ · รุ่น 12–14 ปี ครึ่งละ 20 นาที · รุ่น 8–10 ปี ครึ่งละ 15 นาที",
     ageRule: "รุ่นอายุ 14 ปี ลงทะเบียนนักกีฬาอายุ 15 ปีได้ไม่จำกัดจำนวน แต่ลงสนามแข่งขันพร้อมกันได้ไม่เกิน 2 คนต่อทีมต่อนัด (มติที่ประชุม)",
@@ -46,18 +46,18 @@ window.BLA = {
 
   /* fb = ลิงก์เฟซบุ๊กของสโมสร (ว่างไว้ = ยังไม่ลิงก์) */
   teams: [
-    { slug:"seven",           name:"เซเว่น",             en:"Seven Academy",               city:"อ.เมือง",         province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/search/top?q=seven%20academy" },
-    { slug:"soul",            name:"โซล",                en:"Soul Football Academy",       city:"อ.เมือง",         province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/profile.php?id=100088697600537", note:"ฤดูกาลแรกลงแข่งในนามทีมรวม โซล&เกรียรัมย์" },
-    { slug:"bualuang",        name:"บัวหลวง อะคาเดมี่",   en:"Bualuang Academy",            city:"บ้านบัว อ.เมือง", province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/jmunited" },
-    { slug:"best",            name:"เบส",                en:"Best Academy",                city:"อ.คูเมือง",       province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/profile.php?id=100095125552441" },
-    { slug:"lamplaimat",      name:"ลำปลายมาศ",          en:"Lamplaimat Football Academy", city:"อ.ลำปลายมาศ",     province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/profile.php?id=61560572462043" },
-    { slug:"saengphet",       name:"แสงเพชร",            en:"Saengphet Academy",           city:"อ.ห้วยแถลง",      province:"นครราชสีมา", since:"2567", founding:true,  fb:"https://www.facebook.com/profile.php?id=100083305959231" },
-    { slug:"kriaram",         name:"เกรียรัมย์",          en:"Kriaram Academy",             city:"อ.เมือง",         province:"บุรีรัมย์",   since:"2568", founding:false, fb:"https://www.facebook.com/KriaramLand", note:"แยกออกมาเป็นทีมเดี่ยวจากทีมรวม โซล&เกรียรัมย์" },
-    { slug:"ratchasima",      name:"ราชสีมา อะคาเดมี่",   en:"Ratchasima Academy",          city:"อ.ลำทะเมนชัย",    province:"นครราชสีมา", since:"2568", founding:false, fb:"https://www.facebook.com/profile.php?id=100031027192225" },
-    { slug:"eleven",          name:"อีเลฟเว่น อะคาเดมี่",            en:"Eleven Academy",              city:"อ.เมือง",         province:"บุรีรัมย์",   since:"2568", founding:false, fb:"https://www.facebook.com/profile.php?id=100057031106907" },
-    { slug:"yujin-aman",      name:"ยูจิน x เอแมน",       en:"Yujin Arena × A’MAN Academy", city:"อ.นางรอง",        province:"บุรีรัมย์",   since:"2568", founding:false, fb:"https://www.facebook.com/profile.php?id=61578130827620" },
-    { slug:"chaikorn",        name:"ชัยกร อะคาเดมี่",     en:"Chaikorn Academy",            city:"อ.พุทไธสง",       province:"บุรีรัมย์",   since:"2568", founding:false, fb:"https://www.facebook.com/profile.php?id=61552205729131" },
-    { slug:"kongfang-united", name:"กองฟาง ยูไนเต็ด",     en:"Kongfang United",             city:"อ.กระสัง",        province:"บุรีรัมย์",   since:"2568", founding:false, fb:"https://www.facebook.com/Kogfang" }
+    { slug:"seven",           name:"เซเว่น",             en:"Seven Academy",               city:"อ.เมือง",         province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/search/top?q=seven%20academy", venue:"เซเว่น อะคาเดมี่" },
+    { slug:"soul",            name:"โซล",                en:"Soul Football Academy",       city:"อ.เมือง",         province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/profile.php?id=100088697600537", note:"ฤดูกาลแรกลงแข่งในนามทีมรวม โซล&เกรียรัมย์", venue:"สนามโซล" },
+    { slug:"bualuang",        name:"บัวหลวง อะคาเดมี่",   en:"Bualuang Academy",            city:"บ้านบัว อ.เมือง", province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/jmunited", venue:"สนามบัวหลวง อะคาเดมี่" },
+    { slug:"best",            name:"เบส",                en:"Best Academy",                city:"อ.คูเมือง",       province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/profile.php?id=100095125552441", venue:"สนามพงศ์พันธุ์อารีน่า" },
+    { slug:"lamplaimat",      name:"ลำปลายมาศ",          en:"Lamplaimat Football Academy", city:"อ.ลำปลายมาศ",     province:"บุรีรัมย์",   since:"2567", founding:true,  fb:"https://www.facebook.com/profile.php?id=61560572462043", venue:"ทอฝัน สเตเดี้ยม" },
+    { slug:"saengphet",       name:"แสงเพชร",            en:"Saengphet Academy",           city:"อ.ห้วยแถลง",      province:"นครราชสีมา", since:"2567", founding:true,  fb:"https://www.facebook.com/profile.php?id=100083305959231", venue:"แสงเพชร สเตเดี้ยม" },
+    { slug:"kriaram",         name:"เกรียรัมย์",          en:"Kriaram Academy",             city:"อ.เมือง",         province:"บุรีรัมย์",   since:"2568", founding:false, fb:"https://www.facebook.com/KriaramLand", note:"แยกออกมาเป็นทีมเดี่ยวจากทีมรวม โซล&เกรียรัมย์", venue:"สนามเกรียรัมย์ แลนด์" },
+    { slug:"ratchasima",      name:"ราชสีมา อะคาเดมี่",   en:"Ratchasima Academy",          city:"อ.ลำทะเมนชัย",    province:"นครราชสีมา", since:"2568", founding:false, fb:"https://www.facebook.com/profile.php?id=100031027192225", venue:"สนามราชสีมา อะคาเดมี่" },
+    { slug:"eleven",          name:"อีเลฟเว่น อะคาเดมี่",            en:"Eleven Academy",              city:"อ.เมือง",         province:"บุรีรัมย์",   since:"2568", founding:false, fb:"https://www.facebook.com/profile.php?id=100057031106907", venue:"กูสปอร์ต" },
+    { slug:"yujin-aman",      name:"ยูจิน x เอแมน",       en:"Yujin Arena × A’MAN Academy", city:"อ.นางรอง",        province:"บุรีรัมย์",   since:"2568", founding:false, fb:"https://www.facebook.com/profile.php?id=61578130827620", venue:"ยูจินอารีน่า" },
+    { slug:"chaikorn",        name:"ชัยกร อะคาเดมี่",     en:"Chaikorn Academy",            city:"อ.พุทไธสง",       province:"บุรีรัมย์",   since:"2568", founding:false, fb:"https://www.facebook.com/profile.php?id=61552205729131", venue:"สนามเทศบาลนาโพธิ์" },
+    { slug:"kongfang-united", name:"กองฟาง ยูไนเต็ด",     en:"Kongfang United",             city:"อ.กระสัง",        province:"บุรีรัมย์",   since:"2568", founding:false, fb:"https://www.facebook.com/Kogfang", venue:"กองฟาง สเตเดียม" }
   ],
 
   founders: {
@@ -79,20 +79,20 @@ window.BLA = {
     },
     {
       year: "2569", tag: "ปีที่สาม", now: true,
-      body: "ฤดูกาลนี้จัดต่อเนื่องเป็นครั้งที่สาม สิบสองสโมสร สี่รุ่นอายุ แข่งพบกันหมดทั้งฤดูกาล ปิดฤดูกาลด้วยการรวมทุกคู่ไว้ที่สนามกีฬาจังหวัดบุรีรัมย์ในวันเดียว โดยมีแมวมองบุรีรัมย์ ยูไนเต็ด เฝ้ามองแข้งดาวรุ่งอยู่ข้างสนามทุกนัด",
+      body: "ฤดูกาลนี้จัดต่อเนื่องเป็นครั้งที่สาม สิบสองสโมสร สี่รุ่นอายุ แข่งพบกันหมดทั้งฤดูกาล ปิดฤดูกาลด้วยการรวมทุกคู่ไว้ที่สนามแฝดเขากระโดงในวันเดียว โดยมีแมวมองบุรีรัมย์ ยูไนเต็ด เฝ้ามองแข้งดาวรุ่งอยู่ข้างสนามทุกนัด",
       teams: []
     }
   ],
 
   /* 11 รอบ · รอบละ 6 คู่ · พร้อมสนามแข่ง (อ้างอิงไฟล์กลาง BLA_2026_schedule) */
   schedule: [
-    { round:1, date:"อาทิตย์ 4 ต.ค. 2569", matches:[
-      { home:"กองฟาง ยูไนเต็ด",   away:"อีเลฟเว่น อะคาเดมี่", venue:"กระสัง" },
-      { home:"เบส",              away:"บัวหลวง อะคาเดมี่",   venue:"คูเมือง" },
-      { home:"แสงเพชร",          away:"ราชสีมา อะคาเดมี่",   venue:"ห้วยแถลง · นครราชสีมา" },
-      { home:"ยูจิน x เอแมน",     away:"เกรียรัมย์",         venue:"นางรอง" },
-      { home:"ชัยกร อะคาเดมี่",    away:"โซล",               venue:"พุทไธสง" },
-      { home:"เซเว่น",           away:"ลำปลายมาศ",         venue:"เมืองบุรีรัมย์" }
+    { round:1, date:"อาทิตย์ 4 ต.ค. 2569", note:"นัดเปิดฤดูกาล — ทุกสนามเพิ่มการแข่งขัน \"รุ่นผู้ปกครอง\" คั่นระหว่างโปรแกรมเยาวชน", matches:[
+      { home:"กองฟาง ยูไนเต็ด",   away:"อีเลฟเว่น อะคาเดมี่", venue:"กองฟาง สเตเดียม อ.กระสัง (2 สนามพร้อมกัน)", times:{U14:"15:00",U12:"15:00",parent:"16:00",U10:"16:30",U8:"16:30"} },
+      { home:"เบส",              away:"บัวหลวง อะคาเดมี่",   venue:"สนามพงศ์พันธุ์อารีน่า อ.คูเมือง", times:{U14:"10:00",U12:"11:00",parent:"ระหว่างกลาง",U10:"13:00",U8:"14:00"} },
+      { home:"แสงเพชร",          away:"ราชสีมา อะคาเดมี่",   venue:"แสงเพชร สเตเดี้ยม อ.ห้วยแถลง · นครราชสีมา", times:{U14:"10:00",U12:"11:00",parent:"ระหว่างกลาง",U10:"13:00",U8:"14:00"} },
+      { home:"ยูจิน x เอแมน",     away:"เกรียรัมย์",         venue:"ยูจินอารีน่า อ.นางรอง", times:{U14:"10:00",U12:"11:00",parent:"ระหว่างกลาง",U10:"13:00",U8:"14:00"} },
+      { home:"ชัยกร อะคาเดมี่",    away:"โซล",               venue:"สนามเทศบาลนาโพธิ์ อ.พุทไธสง", times:{U14:"14:00",U12:"15:00",parent:"16:00",U10:"17:00",U8:"18:00"} },
+      { home:"เซเว่น",           away:"ลำปลายมาศ",         venue:"เซเว่น อะคาเดมี่ เมืองบุรีรัมย์", times:{U14:"10:00",U12:"11:00",parent:"ระหว่างกลาง",U10:"13:00",U8:"14:00"} }
     ]},
     { round:2, date:"อาทิตย์ 18 ต.ค. 2569", matches:[
       { home:"เบส",              away:"กองฟาง ยูไนเต็ด",   venue:"คูเมือง" },
@@ -126,7 +126,7 @@ window.BLA = {
       { home:"แสงเพชร",          away:"เกรียรัมย์",         venue:"ห้วยแถลง · นครราชสีมา" },
       { home:"เซเว่น",           away:"เบส",               venue:"เมืองบุรีรัมย์" }
     ]},
-    { round:6, date:"อาทิตย์ 13 ธ.ค. 2569", central:true, venue:"สนามกีฬาจังหวัดบุรีรัมย์ (อ.เมือง)", matches:[
+    { round:6, date:"อาทิตย์ 13 ธ.ค. 2569", central:true, venue:"สนามแฝดเขากระโดง (อบจ. บุรีรัมย์)", matches:[
       { home:"ยูจิน x เอแมน",     away:"ชัยกร อะคาเดมี่" },
       { home:"แสงเพชร",          away:"กองฟาง ยูไนเต็ด" },
       { home:"ราชสีมา อะคาเดมี่",  away:"เกรียรัมย์" },
@@ -166,7 +166,7 @@ window.BLA = {
       { home:"อีเลฟเว่น อะคาเดมี่", away:"แสงเพชร",           venue:"เมืองบุรีรัมย์" },
       { home:"ลำปลายมาศ",        away:"ยูจิน x เอแมน",      venue:"ลำปลายมาศ" }
     ]},
-    { round:11, date:"อาทิตย์ 7 มี.ค. 2570", final:true, central:true, venue:"สนามกีฬาจังหวัดบุรีรัมย์ (อ.เมือง)", matches:[
+    { round:11, date:"อาทิตย์ 7 มี.ค. 2570", final:true, central:true, venue:"สนามแฝดเขากระโดง (อบจ. บุรีรัมย์)", matches:[
       { home:"ยูจิน x เอแมน",     away:"ราชสีมา อะคาเดมี่" },
       { home:"แสงเพชร",          away:"ชัยกร อะคาเดมี่" },
       { home:"กองฟาง ยูไนเต็ด",   away:"ลำปลายมาศ" },

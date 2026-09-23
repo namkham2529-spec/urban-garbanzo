@@ -82,6 +82,7 @@
           '<span class="club-logo" style="background-image:url(' + IMG + t.slug + '.png)" aria-hidden="true"></span>' +
           '<div><div class="en">' + esc(t.en) + '</div><h3>' + esc(t.name) + '</h3>' +
           '<div class="loc">' + esc(t.city) + " · " + esc(t.province) + '</div>' +
+          (t.venue ? '<div class="venue">🏟 ' + esc(t.venue) + '</div>' : "") +
           '<span class="tag ' + (t.founding ? "founding" : "joined") + '">' +
           (t.founding ? "รุ่นก่อตั้ง 2567" : "เข้าร่วม " + t.since) + "</span>" +
           (t.note ? '<div class="note">' + esc(t.note) + "</div>" : "") +
@@ -138,21 +139,29 @@
     var cap = parseInt(host.getAttribute("data-rounds"), 10);
     var list = BLA.schedule || [];
     if (cap > 0) list = list.slice(0, cap);
+    var timeLabels = { U14:"U14", U12:"U12", parent:"รุ่นผู้ปกครอง", U10:"U10", U8:"U8" };
     host.innerHTML = list.map(function (r) {
       var rows = r.matches.map(function (m) {
+        var times = m.times ? '<div class="m-times">' +
+          ["U14","U12","parent","U10","U8"].filter(function (k) { return m.times[k]; }).map(function (k) {
+            return '<span class="m-time' + (k === "parent" ? " parent" : "") + '"><b>' + timeLabels[k] + '</b>' + esc(m.times[k]) + "</span>";
+          }).join("") + "</div>" : "";
         return '<div class="match">' +
           '<div class="side home"><span class="m-logo"' + bgLogo(m.home) + ' aria-hidden="true"></span><span class="m-name">' + esc(m.home) + "</span></div>" +
           '<span class="vs">พบ</span>' +
           '<div class="side away"><span class="m-logo"' + bgLogo(m.away) + ' aria-hidden="true"></span><span class="m-name">' + esc(m.away) + "</span></div>" +
           (m.venue ? '<div class="m-venue">' + esc(m.venue) + "</div>" : "") +
+          times +
           "</div>";
       }).join("");
       var label = "สัปดาห์ที่ " + r.round + (r.date ? " · " + esc(r.date) : "");
       if (r.final) label += " · นัดปิดฤดูกาล";
       var venueLine = r.central ? "สนามกลาง · " + esc(r.venue) : "เจ้าภาพหมุนเวียนตามสนามสโมสร";
+      var note = r.note ? '<p class="round-note">' + esc(r.note) + "</p>" : "";
       return '<section class="round reveal' + (r.final ? " final" : (r.central ? " central" : "")) + '">' +
         '<header class="round-head"><span class="r-no">' + label + "</span>" +
         '<span class="r-venue">' + venueLine + "</span></header>" +
+        note +
         '<div class="match-list">' + rows + "</div></section>";
     }).join("");
     observeReveals(host);
