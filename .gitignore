@@ -8,3 +8,5 @@ node_modules/
 # build/deploy scratch
 bla-site.zip
 *.ps1
+# ...except the content pipeline tools (reused every matchday, not local-only scratch)
+!round-poster.ps1
