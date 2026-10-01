@@ -10,3 +10,6 @@ bla-site.zip
 *.ps1
 # ...except the content pipeline tools (reused every matchday, not local-only scratch)
 !round-poster.ps1
+!hype-clip-frames.ps1
+# intermediate padded video frames — derived scratch, not needed once hype-clip-*.mp4 exists
+assets/img/hype-frames/
