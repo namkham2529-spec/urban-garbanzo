@@ -8,11 +8,12 @@ param(
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 
-$root     = $PSScriptRoot
-$dataPath = Join-Path $root $DataFile
-$teamsDir = Join-Path $root 'assets\img\teams'
-$logoPath = Join-Path $root 'assets\img\bla-league.png'
-$outDir   = Join-Path $root 'assets\img\round-posters'
+$root        = $PSScriptRoot
+$dataPath    = Join-Path $root $DataFile
+$teamsDir    = Join-Path $root 'assets\img\teams'
+$logoPath    = Join-Path $root 'assets\img\bla-league.png'
+$outDir      = Join-Path $root 'assets\img\round-posters'
+$castlePath  = Join-Path $root 'assets\img\bg-watermark-castle.png'
 if (-not (Test-Path $outDir)) { New-Item -ItemType Directory -Path $outDir | Out-Null }
 
 $jsonText = [System.IO.File]::ReadAllText($dataPath, [System.Text.Encoding]::UTF8)
@@ -42,6 +43,20 @@ function New-Canvas([int]$height = $H) {
   $bgBrush = New-Object System.Drawing.Drawing2D.LinearGradientBrush(
     (New-Object System.Drawing.Point 0,0), (New-Object System.Drawing.Point 0,$height), $bgTop, $bgBot)
   $g.FillRectangle($bgBrush, 0, 0, $W, $height)
+
+  # ปราสาทหินพนมรุ้ง watermark — the house pattern, always applied behind every poster
+  if (Test-Path $castlePath) {
+    $castle = [System.Drawing.Image]::FromFile($castlePath)
+    $cw = $W; $ch = [int]($castle.Height * ($W / $castle.Width))
+    $imgAttr = New-Object System.Drawing.Imaging.ImageAttributes
+    $cm = New-Object System.Drawing.Imaging.ColorMatrix
+    $cm.Matrix33 = 0.5  # scale down source alpha for a subtle-but-visible watermark
+    $imgAttr.SetColorMatrix($cm, [System.Drawing.Imaging.ColorMatrixFlag]::Default, [System.Drawing.Imaging.ColorAdjustType]::Bitmap)
+    $destRect = New-Object System.Drawing.Rectangle 0,0,$cw,$ch
+    $g.DrawImage($castle, $destRect, 0, 0, $castle.Width, $castle.Height, [System.Drawing.GraphicsUnit]::Pixel, $imgAttr)
+    $castle.Dispose()
+  }
+
   return @{ canvas = $canvas; g = $g; h = $height }
 }
 
