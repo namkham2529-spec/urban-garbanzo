@@ -162,7 +162,8 @@ foreach ($m in $data.matches) {
   $g.DrawString($m.away, $nameFont, (New-Object System.Drawing.SolidBrush $white), $awayRect, $sfRight)
 
   $g.DrawString($m.venue, $venueFont, (New-Object System.Drawing.SolidBrush $muted), ($rowX+24), ($rowY+$rowH-78))
-  $timeStr = "U14 $($m.times.U14)$sep$($al.U12) $($m.times.U12)$sep$($al.parent) $($m.times.parent)$sep$($al.U10) $($m.times.U10)$sep$($al.U8) $($m.times.U8)"
+  $ml = if ($m.labels) { $m.labels } else { $al }
+  $timeStr = "$($ml.U14) $($m.times.U14)$sep$($ml.U12) $($m.times.U12)$sep$($ml.parent) $($m.times.parent)$sep$($ml.U10) $($m.times.U10)$sep$($ml.U8) $($m.times.U8)"
   $tFont = New-Object System.Drawing.Font($fontFamily, 13, [System.Drawing.FontStyle]::Regular)
   $tRect = New-Object System.Drawing.RectangleF ($rowX+24), ($rowY+$rowH-50), ($rowW-48), 44
   $g.DrawString($timeStr, $tFont, (New-Object System.Drawing.SolidBrush $goldSoft), $tRect)
@@ -224,12 +225,13 @@ foreach ($m in $data.matches) {
 
   # time chips row
   $al = $data.ageLabels
+  $ml = if ($m.labels) { $m.labels } else { $al }
   $chips = @(
-    @{ label=$al.U14; val=$m.times.U14; hi=$false },
-    @{ label=$al.U12; val=$m.times.U12; hi=$false },
-    @{ label=$al.parent; val=$m.times.parent; hi=$true },
-    @{ label=$al.U10; val=$m.times.U10; hi=$false },
-    @{ label=$al.U8; val=$m.times.U8; hi=$false }
+    @{ label=$ml.U14; val=$m.times.U14; hi=$false },
+    @{ label=$ml.U12; val=$m.times.U12; hi=$false },
+    @{ label=$ml.parent; val=$m.times.parent; hi=$true },
+    @{ label=$ml.U10; val=$m.times.U10; hi=$false },
+    @{ label=$ml.U8; val=$m.times.U8; hi=$false }
   )
   $chipY = $cardY + $cardH + 36
   $chipH = 110
