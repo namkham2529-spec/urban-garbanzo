@@ -13,3 +13,9 @@ bla-site.zip
 !hype-clip-frames.ps1
 # intermediate padded video frames — derived scratch, not needed once hype-clip-*.mp4 exists
 assets/img/hype-frames/
+# poster-template scratch (rendered/derived) — keep only the generator + data + castle artwork
+poster-template/ref/
+poster-template/out/
+poster-template/teams/
+poster-template/bla-league.png
+poster-template/*.html
