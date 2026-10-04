@@ -66,8 +66,8 @@ const html = `<!doctype html><html lang="th"><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700;800;900&family=Sarabun:wght@400;500;600;700&family=Saira+Condensed:wght@600;700&display=swap" rel="stylesheet">
 <style>
 html,body{margin:0;background:#0A1B3D}
-.poster{width:1080px;height:1640px;box-sizing:border-box;position:relative;overflow:hidden;background:#0A1B3D;padding:48px 44px 36px;color:#EAF1FB;font-family:'Sarabun',sans-serif}
-.castle{position:absolute;left:50%;top:-40px;width:1500px;max-width:none;transform:translateX(-50%);filter:invert(1) sepia(.55) saturate(4.5) hue-rotate(-10deg) brightness(.95) contrast(1.05);mix-blend-mode:screen;opacity:.5;z-index:0}
+.poster{width:1440px;height:1790px;box-sizing:border-box;position:relative;overflow:hidden;background:#0A1B3D;padding:52px 56px 36px;color:#EAF1FB;font-family:'Sarabun',sans-serif}
+.castle{position:absolute;left:50%;top:-40px;width:1900px;max-width:none;transform:translateX(-50%);filter:invert(1) sepia(.55) saturate(4.5) hue-rotate(-10deg) brightness(.95) contrast(1.05);mix-blend-mode:screen;opacity:.5;z-index:0}
 .fade1{position:absolute;left:0;right:0;top:0;height:700px;background:linear-gradient(180deg,rgba(7,20,49,.4) 0%,rgba(7,20,49,.6) 35%,#0A1B3D 90%);z-index:0}
 .fade2{position:absolute;left:0;right:0;top:680px;bottom:0;background:#0A1B3D;z-index:0}
 .wrap{position:relative;z-index:1}
@@ -77,27 +77,27 @@ html,body{margin:0;background:#0A1B3D}
 .top .en{font-family:'Saira Condensed';font-weight:700;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#C4D2EA}
 .hero{text-align:center;margin:34px 0 26px}
 .md{font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:.4em;color:#FFD86A;text-transform:uppercase}
-.h1{font-family:Kanit;font-weight:900;font-size:58px;line-height:1.1;color:#fff;margin-top:8px;text-shadow:0 6px 10px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.65)}
+.h1{font-family:Kanit;font-weight:900;font-size:72px;line-height:1.1;color:#fff;margin-top:8px;text-shadow:0 6px 10px rgba(0,0,0,.55),0 12px 34px rgba(0,0,0,.65)}
 .h1 span{color:#FFD86A}
 .sub{font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:.2em;color:#EAF1FB;margin-top:10px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px 20px}
-.tb{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(180,205,245,.24);border-radius:20px;padding:14px 12px 10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 28px}
+.tb{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(180,205,245,.24);border-radius:20px;padding:18px 18px 12px}
 .th{display:flex;align-items:center;gap:10px;border-left:5px solid;padding-left:10px;margin-bottom:8px}
-.th b{font-family:Kanit;font-weight:900;font-size:28px}.th span{font-family:Kanit;font-weight:600;font-size:15px;color:#fff}
+.th b{font-family:Kanit;font-weight:900;font-size:34px}.th span{font-family:Kanit;font-weight:600;font-size:18px;color:#fff}
 table{width:100%;border-collapse:collapse}
-td{font-family:'Saira Condensed';font-weight:700;font-size:15px;text-align:center;color:#EAF1FB;height:40px;border-bottom:1px solid rgba(180,205,245,.1);padding:0 2px}
+td{font-family:'Saira Condensed';font-weight:700;font-size:18px;text-align:center;color:#EAF1FB;height:42px;border-bottom:1px solid rgba(180,205,245,.1);padding:0 2px}
 tr:last-child td{border-bottom:0}
-tr.hd td{height:24px;font-family:Kanit;font-weight:500;font-size:11px;color:#93A7CB}
-td.rk{width:24px;color:#FFD86A;font-size:16px}
+tr.hd td{height:24px;font-family:Kanit;font-weight:500;font-size:13px;color:#93A7CB}
+td.rk{width:30px;color:#FFD86A;font-size:16px}
 td.tm{text-align:left;width:auto}
 .tm{display:flex;align-items:center;gap:7px;border-bottom:0}
 td.tm{display:table-cell;white-space:nowrap}
-.lg{display:inline-flex;vertical-align:middle;width:28px;height:28px;border-radius:8px;background:#fff;align-items:center;justify-content:center;margin-right:7px}
+.lg{display:inline-flex;vertical-align:middle;width:32px;height:32px;border-radius:9px;background:#fff;align-items:center;justify-content:center;margin-right:7px}
 .lg img{width:78%;height:78%;object-fit:contain}
-.nm{font-family:Kanit;font-weight:600;font-size:13px;color:#fff;vertical-align:middle}
-td.pt{font-size:19px;color:#FFD86A;width:34px}
+.nm{font-family:Kanit;font-weight:600;font-size:16px;color:#fff;vertical-align:middle}
+td.pt{font-size:22px;color:#FFD86A;width:34px}
 tr.lead td{background:rgba(242,184,7,.1)}
-.foot{margin-top:22px;display:flex;justify-content:space-between;font-family:'Saira Condensed';font-size:13px;letter-spacing:.06em;color:#93A7CB}
+.foot{margin-top:22px;display:flex;justify-content:space-between;font-family:'Saira Condensed';font-size:15px;letter-spacing:.06em;color:#93A7CB}
 </style></head><body><div class="poster"><img class="castle" src="castle-bg.jpg"><div class="fade1"></div><div class="fade2"></div>
 <div class="wrap">
  <div class="top"><img src="bla-league.png"><div><div class="th1">บุรีรัมย์ลีก อคาเดมี่</div><div class="en">Buriram League Academy · Season 2026</div></div></div>
@@ -112,7 +112,7 @@ fs.mkdirSync(path.join(DIR, 'out'), { recursive: true });
 fs.mkdirSync(OUT_IMG, { recursive: true });
 const png = path.join(DIR, 'out', 'standings.png');
 execFileSync(EDGE, ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--force-device-scale-factor=2',
-  '--window-size=1080,1640', '--virtual-time-budget=8000', `--screenshot=${png}`, 'file:///' + htmlPath.replace(/\\/g, '/')], { stdio: 'ignore' });
+  '--window-size=1440,1790', '--virtual-time-budget=8000', `--screenshot=${png}`, 'file:///' + htmlPath.replace(/\\/g, '/')], { stdio: 'ignore' });
 const jpg = path.join(OUT_IMG, `standings-round${upTo}.jpg`);
 execFileSync(FFMPEG, ['-y', '-loglevel', 'error', '-i', png, '-q:v', '2', jpg]);
 console.log('wrote', jpg);
