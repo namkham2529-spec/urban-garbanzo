@@ -82,8 +82,8 @@ html,body{margin:0;background:#0A1B3D}
 .sub{font-family:'Saira Condensed';font-weight:700;font-size:15px;letter-spacing:.2em;color:#EAF1FB;margin-top:10px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:26px 28px}
 .tb{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(180,205,245,.24);border-radius:20px;padding:18px 18px 12px}
-.th{display:flex;align-items:center;gap:10px;border-left:5px solid;padding-left:10px;margin-bottom:8px}
-.th b{font-family:Kanit;font-weight:900;font-size:34px}.th span{font-family:Kanit;font-weight:600;font-size:18px;color:#fff}
+.th{display:flex;align-items:center;gap:12px;border-left:7px solid;padding:10px 16px;margin-bottom:10px;border-radius:10px;background:linear-gradient(90deg,#0B2F7A,#143F96);box-shadow:0 6px 18px -8px rgba(0,0,0,.6)}
+.th b{font-family:Kanit;font-weight:900;font-size:34px;color:#fff !important;text-shadow:0 2px 8px rgba(0,0,0,.4)}.th span{font-family:Kanit;font-weight:600;font-size:18px;color:#fff}
 table{width:100%;border-collapse:collapse}
 td{font-family:'Saira Condensed';font-weight:700;font-size:18px;text-align:center;color:#EAF1FB;height:42px;border-bottom:1px solid rgba(180,205,245,.1);padding:0 2px}
 tr:last-child td{border-bottom:0}
