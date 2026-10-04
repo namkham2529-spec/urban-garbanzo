@@ -178,5 +178,30 @@ window.BLA = {
 
   /* ผลการแข่งขัน — เพิ่มเมื่อแข่งจริง
      รูปแบบ: { round:1, ageGroup:"U12", home:"เซเว่น", away:"เบส", hs:2, as:1 } */
-  results: []
+  results: [
+    { round:1, ageGroup:"U14", home:"กองฟาง ยูไนเต็ด", away:"อีเลฟเว่น อะคาเดมี่", hs:1, as:2 },
+    { round:1, ageGroup:"U12", home:"กองฟาง ยูไนเต็ด", away:"อีเลฟเว่น อะคาเดมี่", hs:9, as:0 },
+    { round:1, ageGroup:"U10", home:"กองฟาง ยูไนเต็ด", away:"อีเลฟเว่น อะคาเดมี่", hs:5, as:2 },
+    { round:1, ageGroup:"U8", home:"กองฟาง ยูไนเต็ด", away:"อีเลฟเว่น อะคาเดมี่", hs:3, as:5 },
+    { round:1, ageGroup:"U14", home:"เบส", away:"บัวหลวง อะคาเดมี่", hs:3, as:3 },
+    { round:1, ageGroup:"U12", home:"เบส", away:"บัวหลวง อะคาเดมี่", hs:1, as:3 },
+    { round:1, ageGroup:"U10", home:"เบส", away:"บัวหลวง อะคาเดมี่", hs:3, as:2 },
+    { round:1, ageGroup:"U8", home:"เบส", away:"บัวหลวง อะคาเดมี่", hs:4, as:3 },
+    { round:1, ageGroup:"U14", home:"แสงเพชร", away:"ราชสีมา อะคาเดมี่", hs:4, as:5 },
+    { round:1, ageGroup:"U12", home:"แสงเพชร", away:"ราชสีมา อะคาเดมี่", hs:1, as:4 },
+    { round:1, ageGroup:"U10", home:"แสงเพชร", away:"ราชสีมา อะคาเดมี่", hs:3, as:3 },
+    { round:1, ageGroup:"U8", home:"แสงเพชร", away:"ราชสีมา อะคาเดมี่", hs:3, as:10 },
+    { round:1, ageGroup:"U14", home:"ยูจิน x เอแมน", away:"เกรียรัมย์", hs:2, as:0 },
+    { round:1, ageGroup:"U12", home:"ยูจิน x เอแมน", away:"เกรียรัมย์", hs:11, as:1 },
+    { round:1, ageGroup:"U10", home:"ยูจิน x เอแมน", away:"เกรียรัมย์", hs:1, as:5 },
+    { round:1, ageGroup:"U8", home:"ยูจิน x เอแมน", away:"เกรียรัมย์", hs:0, as:7 },
+    { round:1, ageGroup:"U14", home:"ชัยกร อะคาเดมี่", away:"โซล", hs:3, as:2 },
+    { round:1, ageGroup:"U12", home:"ชัยกร อะคาเดมี่", away:"โซล", hs:0, as:0 },
+    { round:1, ageGroup:"U10", home:"ชัยกร อะคาเดมี่", away:"โซล", hs:1, as:3 },
+    { round:1, ageGroup:"U8", home:"ชัยกร อะคาเดมี่", away:"โซล", hs:5, as:1 },
+    { round:1, ageGroup:"U14", home:"เซเว่น", away:"ลำปลายมาศ", hs:4, as:0 },
+    { round:1, ageGroup:"U12", home:"เซเว่น", away:"ลำปลายมาศ", hs:1, as:2 },
+    { round:1, ageGroup:"U10", home:"เซเว่น", away:"ลำปลายมาศ", hs:0, as:1 },
+    { round:1, ageGroup:"U8", home:"เซเว่น", away:"ลำปลายมาศ", hs:2, as:3 }
+  ]
 };
