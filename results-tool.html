@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>กรอกผล BLA 2026 (เครื่องมือผู้จัด)</title><meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Kanit,sans-serif;background:#F4F5F8;color:#1a2332}
+header{background:linear-gradient(115deg,#0B1E42,#1E3A66);color:#fff;padding:14px 18px;display:flex;gap:12px;align-items:center}
+header img{width:42px;height:42px;object-fit:contain}header h1{font-size:17px;margin:0}header p{margin:2px 0 0;font-size:12px;color:#F2C879}
+nav{display:flex;gap:4px;background:#fff;border-bottom:1px solid #e2e5eb;padding:0 10px;overflow-x:auto;position:sticky;top:0;z-index:5}
+nav button{padding:12px 14px;border:0;border-bottom:3px solid transparent;background:none;font:600 13px Kanit;color:#6b7280;cursor:pointer;white-space:nowrap}
+nav button.on{color:#12284B;border-bottom-color:#F2931E}
+main{max-width:980px;margin:0 auto;padding:14px}
+.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.team{display:flex;align-items:center;gap:7px;font-weight:600;font-size:14px}.team img{width:26px;height:26px;object-fit:contain;border-radius:50%;background:#f0f0f0}
+.mhead{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.venue{font-size:11px;color:#888}.ages{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.age{border:1px solid #e3e6ec;border-radius:10px;padding:8px;display:flex;align-items:center;gap:6px;justify-content:center;font-size:13px}
+.age b{min-width:44px;color:#12284B}.age.parent b{color:#B87400;min-width:auto}
+.age input{width:46px;padding:7px 2px;text-align:center;border:1px solid #cfd4dc;border-radius:7px;font:600 15px Kanit}
+.age input:focus{outline:2px solid #F2931E}.age.done{background:#EAF7EA;border-color:#9fd49f}
+table{width:100%;border-collapse:collapse;font-size:13px}th{background:#12284B;color:#fff;padding:7px 5px;text-align:center}th:nth-child(2){text-align:left}
+td{padding:6px 5px;border-bottom:1px solid #eee;text-align:center}td:nth-child(2){text-align:left}tr:nth-child(even) td{background:#F8F9FB}
+h3{background:#F2931E;color:#12284B;margin:6px 0 0;padding:8px 12px;border-radius:8px 8px 0 0;font-size:14px}
+.btn{background:#F2931E;color:#12284B;font:700 13px Kanit;border:0;border-radius:8px;padding:9px 16px;cursor:pointer}.btn.s{background:#12284B;color:#fff}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}textarea{width:100%;min-height:200px;font:14px/1.5 Kanit;padding:10px;border:1px solid #cfd4dc;border-radius:8px}
+select{font:600 14px Kanit;padding:8px;border-radius:8px;border:1px solid #cfd4dc}.note{font-size:12px;color:#777}
+</style></head><body>
+<header><img src="assets/img/bla-league.png" alt=""><div><h1>BURIRAM LEAGUE ACADEMY · กรอกผลการแข่งขัน</h1><p>ฤดูกาล 2026 · บันทึกในเครื่องนี้อัตโนมัติ</p></div></header>
+<nav id="nav"><button data-t="enter" class="on">กรอกผล</button><button data-t="stand">ตารางคะแนน</button><button data-t="post">ข้อความโพสต์</button><button data-t="data">ส่งออก/สำรอง</button></nav>
+<main id="main"></main>
+<script src="assets/js/data.js"></script>
+<script>
+const AGES=["U14","U12","U10","U8"], KEY="bla_results_v1";
+const T=BLA.teams, byName={};T.forEach(t=>byName[t.name]=t);
+let R=JSON.parse(localStorage.getItem(KEY)||"{}"); // key -> {U14:{h,a},..., P:{h,a}}
+let tab="enter", round=1;
+const save=()=>localStorage.setItem(KEY,JSON.stringify(R));
+const mk=(r,m)=>r+"|"+m.home+"|"+m.away;
+const logo=n=>byName[n]?`assets/img/teams/${byName[n].slug}.png`:"assets/img/bla-league.png";
+const tm=n=>`<span class="team"><img src="${logo(n)}">${n}</span>`;
+const rd=()=>BLA.schedule.find(x=>x.round===round);
+const val=v=>(v===undefined||v===null)?"":v;
+const has=s=>s&&s.h!==""&&s.a!==""&&s.h!=null&&s.a!=null;
+
+function enter(){
+  const r=rd();
+  let h=`<div class="card row"><b>สัปดาห์</b><select id="rsel">${BLA.schedule.map(x=>`<option value="${x.round}" ${x.round===round?"selected":""}>${x.round} · ${x.date}</option>`).join("")}</select><span class="note">พิมพ์สกอร์แล้วบันทึกทันที · ช่องเขียว = กรอกครบ · ช่อง "ผู้ปกครอง" ไม่นับคะแนนตาราง</span></div>`;
+  r.matches.forEach(m=>{
+    const k=mk(round,m), e=R[k]||{};
+    h+=`<div class="card"><div class="mhead"><div class="row">${tm(m.home)}<span class="note">พบ</span>${tm(m.away)}</div><span class="venue">${m.venue||r.venue||""}</span></div><div class="ages">`+
+    AGES.concat("P").map(a=>{const s=e[a]||{};const lab=a==="P"?"ผู้ปกครอง":a;
+      return `<div class="age ${a==="P"?"parent":""} ${has(s)?"done":""}"><b>${lab}</b><input type="number" min="0" inputmode="numeric" data-k="${k}" data-a="${a}" data-s="h" value="${val(s.h)}"> - <input type="number" min="0" inputmode="numeric" data-k="${k}" data-a="${a}" data-s="a" value="${val(s.a)}"></div>`}).join("")+`</div></div>`;
+  });
+  return h;
+}
+function standings(age){
+  const S={};T.forEach(t=>S[t.name]={n:t.name,p:0,w:0,d:0,l:0,gf:0,ga:0,pts:0});
+  BLA.schedule.forEach(r=>r.matches.forEach(m=>{const s=(R[mk(r.round,m)]||{})[age];if(!has(s))return;
+    const h=+s.h,a=+s.a,H=S[m.home],A=S[m.away];if(!H||!A)return;H.p++;A.p++;H.gf+=h;H.ga+=a;A.gf+=a;A.ga+=h;
+    if(h>a){H.w++;H.pts+=3;A.l++}else if(h<a){A.w++;A.pts+=3;H.l++}else{H.d++;A.d++;H.pts++;A.pts++}}));
+  return Object.values(S).sort((x,y)=>y.pts-x.pts||(y.gf-y.ga)-(x.gf-x.ga)||y.gf-x.gf);
+}
+function stand(){return AGES.map(a=>`<h3>รุ่น ${a}</h3><div class="card" style="border-radius:0 0 12px 12px;margin-top:0;overflow-x:auto"><table><tr><th>#</th><th>ทีม</th><th>แข่ง</th><th>ชนะ</th><th>เสมอ</th><th>แพ้</th><th>ได้</th><th>เสีย</th><th>+/-</th><th>แต้ม</th></tr>${standings(a).map((s,i)=>`<tr><td>${i+1}</td><td>${tm(s.n)}</td><td>${s.p}</td><td>${s.w}</td><td>${s.d}</td><td>${s.l}</td><td>${s.gf}</td><td>${s.ga}</td><td>${s.gf-s.ga>0?"+":""}${s.gf-s.ga}</td><td><b>${s.pts}</b></td></tr>`).join("")}</table></div>`).join("")}
+function postText(){
+  const r=rd();let t=`⚽ ผลการแข่งขัน บุรีรัมย์ลีก อะคาเดมี่ 2026 · สัปดาห์ที่ ${round}\n${r.date}\n`;
+  r.matches.forEach((m,i)=>{const e=R[mk(round,m)]||{};const parts=AGES.filter(a=>has(e[a])).map(a=>`${a} ${e[a].h}-${e[a].a}`);
+    if(has(e.P))parts.push(`ผู้ปกครอง ${e.P.h}-${e.P.a}`);
+    t+=`\n${i+1}️⃣ ${m.home} 🆚 ${m.away}\n   ${parts.length?parts.join(" · "):"(รอรายงานผล)"}`;});
+  return t+`\n\nตารางคะแนนและผลทุกคู่ที่เว็บไซต์ buriram-league-academy.netlify.app\n#บุรีรัมย์ลีกอะคาเดมี่ #BLA2026`;
+}
+function post(){return `<div class="card"><div class="row"><b>สัปดาห์</b><select id="rsel">${BLA.schedule.map(x=>`<option value="${x.round}" ${x.round===round?"selected":""}>${x.round} · ${x.date}</option>`).join("")}</select><button class="btn" id="cp">คัดลอกข้อความ</button></div><br><textarea id="pt" readonly>${postText()}</textarea></div>`}
+function data(){
+  const out=[];BLA.schedule.forEach(r=>r.matches.forEach(m=>{const e=R[mk(r.round,m)]||{};AGES.forEach(a=>{if(has(e[a]))out.push(`    { round:${r.round}, ageGroup:"${a}", home:"${m.home}", away:"${m.away}", hs:${+e[a].h}, as:${+e[a].a} }`)})}));
+  return `<div class="card"><b>ผลที่บันทึกไว้ (${out.length} รายการ) — รูปแบบสำหรับ data.js → results</b><br><br><textarea id="ex" readonly>${out.join(",\n")}</textarea><div class="row" style="margin-top:8px"><button class="btn" id="cx">คัดลอก</button><button class="btn s" id="dl">ดาวน์โหลดสำรอง (.json)</button><label class="btn s">นำเข้า<input type="file" id="im" accept=".json" hidden></label></div><p class="note">ข้อมูลอยู่ในเบราว์เซอร์เครื่องนี้ — ใช้เครื่อง/เบราว์เซอร์เดิมกรอกตลอด หรือกดดาวน์โหลดสำรองไว้</p></div>`}
+function draw(){
+  document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("on",b.dataset.t===tab));
+  document.getElementById("main").innerHTML={enter,stand,post,data}[tab]();
+  const rs=document.getElementById("rsel");if(rs)rs.onchange=e=>{round=+e.target.value;draw()};
+  document.querySelectorAll("input[data-k]").forEach(i=>i.oninput=()=>{const k=i.dataset.k,a=i.dataset.a;R[k]=R[k]||{};R[k][a]=R[k][a]||{h:"",a:""};R[k][a][i.dataset.s]=i.value;save();
+    i.closest(".age").classList.toggle("done",has(R[k][a]))});
+  const cp=document.getElementById("cp");if(cp)cp.onclick=()=>{navigator.clipboard.writeText(document.getElementById("pt").value);cp.textContent="คัดลอกแล้ว ✓"};
+  const cx=document.getElementById("cx");if(cx)cx.onclick=()=>{navigator.clipboard.writeText(document.getElementById("ex").value);cx.textContent="คัดลอกแล้ว ✓"};
+  const dl=document.getElementById("dl");if(dl)dl.onclick=()=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(R)],{type:"application/json"}));a.download="bla-results-backup.json";a.click()};
+  const im=document.getElementById("im");if(im)im.onchange=e=>{const f=e.target.files[0];if(!f)return;f.text().then(t=>{R=JSON.parse(t);save();draw()})};
+}
+document.getElementById("nav").onclick=e=>{if(e.target.dataset.t){tab=e.target.dataset.t;draw()}};
+draw();
+</script></body></html>
