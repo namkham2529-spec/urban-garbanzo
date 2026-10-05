@@ -54,7 +54,7 @@ function table(age) {
   const rows = standings(age).map((s, i) => {
     const gd = s.gf - s.ga;
     const nm = (posters.teams[s.slug] || {}).th || s.name;
-    return `<tr class="${i < 1 && s.p ? 'lead' : ''}"><td class="rk">${i + 1}</td>
+    return `<tr class="r${i + 1} z${i % 2}"><td class="rk"><b>${i + 1}</b></td>
       <td class="tm"><span class="lg"><img src="teams/${s.slug}.png"></span><span class="nm">${esc(nm)}</span></td>
       <td>${s.p}</td><td>${s.w}</td><td>${s.d}</td><td>${s.l}</td><td>${gd > 0 ? '+' : ''}${gd}</td><td class="pt">${s.pts}</td></tr>`;
   }).join('');
@@ -96,7 +96,21 @@ td.tm{display:table-cell;white-space:nowrap}
 .lg img{width:78%;height:78%;object-fit:contain}
 .nm{font-family:Kanit;font-weight:600;font-size:16px;color:#fff;vertical-align:middle}
 td.pt{font-size:22px;color:#FFD86A;width:34px}
-tr.lead td{background:rgba(242,184,7,.1)}
+/* per-position shading (reference poster: top-3 tinted, rest zebra) */
+tr.z0 td{background:rgba(70,110,185,.34)}
+tr.z1 td{background:rgba(6,18,46,.62)}
+tr.r1 td{background:rgba(232,172,24,.62)}
+tr.r2 td{background:rgba(185,203,236,.46)}
+tr.r3 td{background:rgba(226,108,28,.58)}
+tr.r1 td.tm .nm,tr.r2 td.tm .nm,tr.r3 td.tm .nm{font-weight:800}
+td.rk b{display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;font-family:Kanit;font-weight:800;font-size:15px;color:#FFD86A}
+tr.r1 td.rk b{background:#F2B807;color:#0A1B3D;box-shadow:0 0 12px rgba(242,184,7,.7)}
+tr.r2 td.rk b{background:#CFD9EC;color:#0A1B3D}
+tr.r3 td.rk b{background:#F2791E;color:#fff}
+tr.r1 td:first-child{box-shadow:inset 6px 0 0 #F2B807}
+tr.r2 td:first-child{box-shadow:inset 6px 0 0 #CFD9EC}
+tr.r3 td:first-child{box-shadow:inset 6px 0 0 #F2791E}
+tr.hd td{background:transparent!important;box-shadow:none!important}
 .foot{margin-top:22px;display:flex;justify-content:space-between;font-family:'Saira Condensed';font-size:15px;letter-spacing:.06em;color:#93A7CB}
 </style></head><body><div class="poster"><img class="castle" src="castle-bg.jpg"><div class="fade1"></div><div class="fade2"></div>
 <div class="wrap">
