@@ -547,9 +547,11 @@
 
   function buildClubFilter(teams) {
     var bar = $("[data-club-filter]"); if (!bar) return;
-    var counts = {}; teams.forEach(function (t) { counts[t] = (counts[t] || 0) + 1; });
+    var counts = {};
+    ((window.BLA && BLA.teams) || []).forEach(function (t) { counts[t.name] = 0; });   /* ทุกสโมสรมีปุ่มเสมอ แม้ยังไม่มีผู้ลงทะเบียน */
+    teams.forEach(function (t) { counts[t] = (counts[t] || 0) + 1; });
+    if (cardFilter.team !== "all" && counts[cardFilter.team] === undefined) counts[cardFilter.team] = 0;   /* ลิงก์ประจำทีมต้องไม่เด้งไปแสดงทุกทีม */
     var names = Object.keys(counts).sort(function (a, b) { return a.localeCompare(b, "th"); });
-    if (cardFilter.team !== "all" && !counts[cardFilter.team]) cardFilter.team = "all";
     bar.innerHTML = '<button class="chip" data-team="all" aria-pressed="true">ทุกสโมสร (' + teams.length + ')</button>' +
       names.map(function (n) { return '<button class="chip" data-team="' + esc(n) + '" aria-pressed="false">' + esc(n || "ไม่ระบุสโมสร") + ' (' + counts[n] + ')</button>'; }).join("");
     bar.hidden = false;
