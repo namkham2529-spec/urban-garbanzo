@@ -19,6 +19,9 @@ data.round = N;
 data.badge = `นัดที่ ${N} · ฤดูกาล 2026`;
 data.headline1 = 'โปรแกรมนัดที่';
 data.headline2 = String(N);
+// BLA page is neutral (admins are Kongfang people): list Kongfang's match LAST
+const isKf = m => slugOf(m.home) === 'kongfang-united' || slugOf(m.away) === 'kongfang-united';
+r.matches = r.matches.filter(m => !isKf(m)).concat(r.matches.filter(isKf));
 data.matches = r.matches.map(m => ({ home: slugOf(m.home), away: slugOf(m.away) }));
 data.summary = {
   matchday: `Matchday · รอบที่ ${N} · ครบ ${r.matches.length} คู่`,
