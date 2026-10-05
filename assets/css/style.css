@@ -526,7 +526,11 @@ table.standings tbody tr:hover{background:rgba(255,255,255,.02);}
 .id-card .ic-foot b{font-weight:800;font-size:.72rem;letter-spacing:.04em;}
 .print-bar{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin:1.4rem 0;}
 
+.print-title{display:none;}
+.club-filters .chip{font-size:.82rem;}
 @media print{
+  .print-title{display:block!important;font-size:13pt;margin:0 0 4mm;color:#000;}
+  .filters,.club-filters{display:none!important;}
   .site-header,.site-footer,.print-bar,.gen-controls,.tabs,.section-head,.pill-note,.nav,.hint{display:none!important;}
   body{background:#fff;color:#000;}
   main,.wrap,.section,.section-sm{padding:0!important;margin:0!important;max-width:none!important;}

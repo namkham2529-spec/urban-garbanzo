@@ -53,6 +53,8 @@
         <span class="gen-hint" data-gen-status>รองรับหัวคอลัมน์จากชีต 'ทะเบียนนักกีฬา': ชื่อสโมสร · รุ่นอายุ (U8/U10/U12/U14) · ชื่อ-นามสกุลนักกีฬา · วันเดือนปีเกิด · เลขบัตร ปชช./เลขนักเรียน · เบอร์เสื้อ · ชื่อผู้ปกครอง · เบอร์ติดต่อผู้ปกครอง (เพิ่ม 'ลิงก์รูป' ได้ถ้ามีรูปถ่าย)</span>
       </div>
 
+      <div class="filters club-filters" data-club-filter hidden aria-label="เลือกสโมสร"></div>
+
       <div class="filters" data-card-filter hidden>
         <button class="chip" data-age="all" aria-pressed="true">ทุกรุ่น</button>
         <button class="chip" data-age="U8" aria-pressed="false">U8</button>
@@ -63,8 +65,11 @@
 
       <div class="print-bar">
         <button class="btn btn-ember" data-print>พิมพ์ / บันทึกเป็น PDF</button>
-        <span class="pill-note">เคล็ดลับ: กรองรุ่นอายุที่ต้องการก่อนพิมพ์ เพื่อพิมพ์บัตรทีละรุ่น</span>
+        <span class="pill-note">เคล็ดลับ: เลือกสโมสรของท่านก่อน (ปุ่มด้านบน) แล้วกรองรุ่นอายุ จึงกดพิมพ์ — จะพิมพ์เฉพาะบัตรที่แสดงอยู่ · คัดลอกลิงก์ของสโมสรไปส่งให้ทีมได้</span>
+        <button class="btn btn-ghost" data-copy-link hidden>คัดลอกลิงก์สโมสรนี้</button>
+        <span class="pill-note" data-card-count></span>
       </div>
+      <h2 class="print-title" data-print-title></h2>
 
       <div class="card-sheet" data-cards></div>
     </div>

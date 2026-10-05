@@ -512,6 +512,49 @@
     return m ? "U" + m[1] : "";
   }
 
+  /* กรองบัตรตามสโมสร + รุ่นอายุ (ซ่อนด้วย CSS เท่านั้น — ข้อมูลและบัตรเดิมไม่ถูกแก้) */
+  var cardFilter = { team: "all", age: "all" };
+  (function () {
+    var q = new URLSearchParams(location.search);
+    if (q.get("club")) cardFilter.team = q.get("club");
+    if (q.get("age")) cardFilter.age = q.get("age");
+  })();
+
+  function applyCardFilters() {
+    var shown = 0;
+    $all("[data-cards] .id-card").forEach(function (card) {
+      var ok = (cardFilter.team === "all" || card.getAttribute("data-team") === cardFilter.team) &&
+               (cardFilter.age === "all" || card.getAttribute("data-age") === cardFilter.age);
+      card.style.display = ok ? "" : "none";
+      if (ok) shown++;
+    });
+    var cb = $("[data-club-filter]");
+    if (cb) $all(".chip", cb).forEach(function (c) { c.setAttribute("aria-pressed", c.getAttribute("data-team") === cardFilter.team ? "true" : "false"); });
+    var ab = $("[data-card-filter]");
+    if (ab) $all(".chip", ab).forEach(function (c) { c.setAttribute("aria-pressed", c.getAttribute("data-age") === cardFilter.age ? "true" : "false"); });
+    var cnt = $("[data-card-count]"); if (cnt) cnt.textContent = "แสดง " + shown + " ใบ";
+    var title = $("[data-print-title]");
+    if (title) title.textContent = "บัตรประจำตัวนักกีฬา · " + (cardFilter.team === "all" ? "ทุกสโมสร" : cardFilter.team) +
+      (cardFilter.age === "all" ? "" : " · " + cardFilter.age) + " · ฤดูกาล 2026";
+    var cp = $("[data-copy-link]"); if (cp) cp.hidden = cardFilter.team === "all";
+    try {
+      var p = new URLSearchParams();
+      if (cardFilter.team !== "all") p.set("club", cardFilter.team);
+      if (cardFilter.age !== "all") p.set("age", cardFilter.age);
+      history.replaceState(null, "", location.pathname + (p.toString() ? "?" + p.toString() : ""));
+    } catch (e) {}
+  }
+
+  function buildClubFilter(teams) {
+    var bar = $("[data-club-filter]"); if (!bar) return;
+    var counts = {}; teams.forEach(function (t) { counts[t] = (counts[t] || 0) + 1; });
+    var names = Object.keys(counts).sort(function (a, b) { return a.localeCompare(b, "th"); });
+    if (cardFilter.team !== "all" && !counts[cardFilter.team]) cardFilter.team = "all";
+    bar.innerHTML = '<button class="chip" data-team="all" aria-pressed="true">ทุกสโมสร (' + teams.length + ')</button>' +
+      names.map(function (n) { return '<button class="chip" data-team="' + esc(n) + '" aria-pressed="false">' + esc(n || "ไม่ระบุสโมสร") + ' (' + counts[n] + ')</button>'; }).join("");
+    bar.hidden = false;
+  }
+
   function renderCards(text) {
     var out = $("[data-cards]");
     var status = $("[data-gen-status]");
@@ -563,7 +606,7 @@
       if (get("number")) meta += "<div><dt>เบอร์เสื้อ</dt><dd>" + esc(get("number")) + "</dd></div>";
       if (get("pos")) meta += "<div><dt>ตำแหน่ง</dt><dd>" + esc(get("pos")) + "</dd></div>";
 
-      return '<div class="id-card" data-age="' + esc(age) + '" style="--c:' + esc(th.accent) + '">' +
+      return '<div class="id-card" data-age="' + esc(age) + '" data-team="' + esc(team) + '" style="--c:' + esc(th.accent) + '">' +
         '<span class="ic-slot" aria-hidden="true"></span>' +
         '<span class="ic-wm" aria-hidden="true">BLA</span>' +
         '<header class="ic-head">' +
@@ -591,6 +634,9 @@
       " · เรียงตามสโมสร→รุ่น — กรองรุ่นอายุแล้วสั่งพิมพ์ PDF ได้เลย";
     var bar = $("[data-card-filter]");
     if (bar) bar.hidden = false;
+    var teamsOf = []; $all("[data-cards] .id-card").forEach(function (c) { teamsOf.push(c.getAttribute("data-team") || ""); });
+    buildClubFilter(teamsOf);
+    applyCardFilters();
   }
 
   function wireGenerator() {
@@ -621,11 +667,21 @@
     var bar = $("[data-card-filter]");
     if (bar) bar.addEventListener("click", function (e) {
       var chip = e.target.closest(".chip"); if (!chip) return;
-      $all(".chip", bar).forEach(function (c) { c.setAttribute("aria-pressed", c === chip ? "true" : "false"); });
-      var f = chip.getAttribute("data-age");
-      $all("[data-cards] .id-card").forEach(function (card) {
-        card.style.display = (f === "all" || card.getAttribute("data-age") === f) ? "" : "none";
-      });
+      cardFilter.age = chip.getAttribute("data-age");
+      applyCardFilters();
+    });
+
+    var clubBar = $("[data-club-filter]");
+    if (clubBar) clubBar.addEventListener("click", function (e) {
+      var chip = e.target.closest(".chip"); if (!chip) return;
+      cardFilter.team = chip.getAttribute("data-team");
+      applyCardFilters();
+    });
+
+    var copyBtn = $("[data-copy-link]");
+    if (copyBtn) copyBtn.addEventListener("click", function () {
+      var done = function () { copyBtn.textContent = "คัดลอกแล้ว ✓"; setTimeout(function () { copyBtn.textContent = "คัดลอกลิงก์สโมสรนี้"; }, 2000); };
+      if (navigator.clipboard) navigator.clipboard.writeText(location.href).then(done); else { prompt("คัดลอกลิงก์", location.href); }
     });
 
     var printBtn = $("[data-print]");
