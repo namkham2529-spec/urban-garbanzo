@@ -41,6 +41,7 @@ function teamBlock(slug, pill, pillStyle) {
 }
 
 function html(m, sched) {
+  const timesLine = sched.times ? '<div style="margin-top:6px;font-family:Saira Condensed;font-weight:700;font-size:15px;color:#FFD86A">' + Object.entries(sched.times).sort((x, y) => x[1].localeCompare(y[1])).map(([k, v]) => (k === 'parent' ? 'ผู้ปกครอง' : k) + ' ' + String(v).slice(0, 5)).join(' · ') + '</div>' : '';
   const flip = m.first !== m.home;                       // scores are stored first-team-first
   let hw = 0, aw = 0, dr = 0, hg = 0, ag = 0;
   const rows = AGES.map(a => {
@@ -109,7 +110,7 @@ html,body{margin:0;background:#0A1B3D}
     <div class="vs"><span>VS</span></div>
     ${teamBlock(m.away, 'ทีมเยือน', 'color:#FFA457;background:rgba(242,121,30,.14);border:1px solid rgba(242,121,30,.35)')}
     </div><div class="rule"></div>
-    <div class="v"><b>${esc(round.date)}</b>สนาม ${esc(sched.venue)}</div></div>
+    <div class="v"><b>${esc(sched.date || round.date)}</b>${/^สนาม/.test(sched.venue) ? '' : 'สนาม '}${esc(sched.venue)}${timesLine}</div></div>
   <div class="sub">พบกันครั้งล่าสุด · ${esc(m.when)}<small>${lead} รุ่น (เสมอ ${dr}) · ประตูรวม ${hg}-${ag}</small></div>
   <div class="rows">${rows}</div>
   <div class="foot"><div class="fr"><span>สถิติจากผลที่ทีมรายงานในฤดูกาลที่แล้ว</span><span>ติดตามผลที่ Facebook: Buriram League Academy</span></div></div>

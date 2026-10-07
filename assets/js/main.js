@@ -150,6 +150,7 @@
           '<div class="side home"><span class="m-logo"' + bgLogo(m.home) + ' aria-hidden="true"></span><span class="m-name">' + esc(m.home) + "</span></div>" +
           '<span class="vs">พบ</span>' +
           '<div class="side away"><span class="m-logo"' + bgLogo(m.away) + ' aria-hidden="true"></span><span class="m-name">' + esc(m.away) + "</span></div>" +
+          (m.date ? '<div class="m-venue"><b>' + esc(m.date) + "</b></div>" : "") +
           (m.venue ? '<div class="m-venue">' + esc(m.venue) + "</div>" : "") +
           times +
           "</div>";

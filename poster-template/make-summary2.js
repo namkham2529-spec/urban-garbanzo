@@ -25,11 +25,11 @@ r.matches = r.matches.filter(m => !isKf(m)).concat(r.matches.filter(isKf));
 data.matches = r.matches.map(m => ({ home: slugOf(m.home), away: slugOf(m.away) }));
 data.summary = {
   matchday: `Matchday · รอบที่ ${N} · ครบ ${r.matches.length} คู่`,
-  dateVenue: `${dateTh} · ปราสาทหินพนมรุ้ง · บุรีรัมย์`,
-  captions: r.matches.map(m => `สนาม ${m.venue} · เจ้าบ้าน ${data.teams[slugOf(m.home)].th}`),
+  dateVenue: `${dateTh} (ยกเว้น 2 คู่ตามที่ระบุ) · บุรีรัมย์`,
+  captions: r.matches.map(m => `${/^สนาม/.test(m.venue) ? m.venue : 'สนาม ' + m.venue}${m.date ? ' · ' + m.date : ''} · เจ้าบ้าน ${data.teams[slugOf(m.home)].th}`),
   agesLabel: 'เวลาแข่งขันมาตรฐานตามรุ่นอายุ:',
   ages: base.summary.ages,
-  note: '* เวลาแข่งตามมาตรฐานลีก — สนามที่ปรับเวลา ทีมเจ้าบ้านจะแจ้งเพิ่มเติม · รุ่นผู้ปกครองคั่นระหว่างโปรแกรม'
+  note: '* คู่ที่ระบุวันเฉพาะ (ชัยกร–เซเว่น อาทิตย์ 11 ต.ค. · เบส–กองฟาง อังคาร 13 ต.ค.) มีตารางเวลาเฉพาะ ดูโปสเตอร์ของคู่นั้น · คู่อื่นใช้เวลามาตรฐาน ทีมเจ้าบ้านจะแจ้งเพิ่มเติมหากปรับ'
 };
 const html = require('./summary-part.js')(data, esc);
 const hp = path.join(DIR, 'summary2.html');
