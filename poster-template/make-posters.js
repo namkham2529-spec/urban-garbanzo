@@ -18,7 +18,7 @@ const FFMPEG = 'C:\\Users\\User\\AppData\\Local\\Microsoft\\WinGet\\Packages\\Gy
 fs.mkdirSync(path.join(DIR,"teams"),{recursive:true});
 for (const f of fs.readdirSync(path.join(DIR,"..","assets","img","teams"))) { const src=path.join(DIR,"..","assets","img","teams",f); if (fs.statSync(src).isFile()) fs.copyFileSync(src,path.join(DIR,"teams",f)); }
 fs.copyFileSync(path.join(DIR,"..","assets","img","bla-league.png"),path.join(DIR,"bla-league.png"));
-const data = JSON.parse(fs.readFileSync(path.join(DIR, 'posters.json'), 'utf8'));
+const data = JSON.parse(fs.readFileSync(path.join(DIR, process.env.POSTERS_JSON || 'posters.json'), 'utf8'));
 const AGE_COLOR = { U14: '#4DA3FF', U12: '#2F80ED', U10: '#F2791E', U8: '#F2B807' };
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
@@ -114,7 +114,7 @@ html,body{margin:0;background:#0A1B3D}
       </div>
       <div class="rule"></div>
       <div class="when">
-        <div class="d">${esc(data.dateLong)}</div>
+        <div class="d">${esc(m.dateLong || data.dateLong)}</div>
         <div class="v">${esc(m.venue)}</div>
         ${m.venueNote ? `<div class="n">${esc(m.venueNote)}</div>` : ''}
       </div>
@@ -146,7 +146,7 @@ data.matches.forEach((m, i) => {
   console.log('wrote', jpg);
 });
 
-if (only === null || only === 0) {
+if ((only === null || only === 0) && !process.env.POSTERS_JSON) {
   const summaryHtml = require('./summary-part.js');
   const htmlPath = path.join(DIR, 'summary.html');
   fs.writeFileSync(htmlPath, summaryHtml(data, esc), 'utf8');
