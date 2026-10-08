@@ -1,4 +1,4 @@
-// build-hype3.js — Round-N hype trailer: Gemini-made TEXT-FREE background plates (bgclips/*.mp4) + the REAL posters
+// build-hype3.js (v4 output: poster backgrounds removed) — Round-N hype trailer: Gemini-made TEXT-FREE background plates (bgclips/*.mp4) + the REAL posters
 // composited on top (so logos / Thai text / dates are always exact) + synthesised drum audio.
 //   node build-hype3.js 2    -> assets/img/round-posters/hype-clip-round2-v3.mp4  (1080x1920, ~21s)
 const fs = require('fs'), path = require('path');
@@ -10,6 +10,7 @@ const POST = path.join(DIR, '..', 'assets', 'img', 'round-posters');
 const BG = { lights: path.join(DIR, 'bgclips', 'stadium-lights.mp4'), ball: path.join(DIR, 'bgclips', 'ball-grass.mp4'), temple: path.join(DIR, 'bgclips', 'temple-gold.mp4') };
 const fileUrl = p => 'file:///' + p.split('\\').join('/');
 const OUT = path.join(DIR, 'out'); fs.mkdirSync(OUT, { recursive: true });
+const ALPHA = path.join(OUT, 'alpha');   // transparent posters from make-alpha-posters.js (background removed)
 fs.copyFileSync(path.join(DIR, '..', 'assets', 'img', 'bla-league.png'), path.join(DIR, 'bla-league.png'));
 
 // ---- transparent text cards (Edge renders real Thai type) ----
@@ -35,9 +36,9 @@ for (const [name, html] of [['h3-intro', intro], ['h3-outro', outro]]) {
 // ---- slide plan ----
 const slides = [
   { bg: 'temple', ss: 0.0, d: 2.6, card: cards['h3-intro'] },
-  ...[1, 2, 3].map(k => ({ bg: 'lights', ss: 0.5 + k * 1.2, d: 2.4, poster: path.join(POST, `round${N}-match${k}.jpg`) })),
-  ...[4, 5, 6].map(k => ({ bg: 'ball', ss: (k - 4) * 2.2, d: 2.4, poster: path.join(POST, `round${N}-match${k}.jpg`) })),
-  { bg: 'temple', ss: 3.4, d: 3.0, poster: path.join(POST, `round${N}-summary.jpg`) },
+  ...[1, 2, 3].map(k => ({ bg: 'lights', ss: 0.5 + k * 1.2, d: 2.4, poster: path.join(ALPHA, `match${k}.png`) })),
+  ...[4, 5, 6].map(k => ({ bg: 'ball', ss: (k - 4) * 2.2, d: 2.4, poster: path.join(ALPHA, `match${k}.png`) })),
+  { bg: 'temple', ss: 3.4, d: 3.0, poster: path.join(ALPHA, 'summary.png') },
   { bg: 'lights', ss: 1.0, d: 2.8, card: cards['h3-outro'] }
 ];
 const TD = 0.35, FPS = 30;
@@ -49,9 +50,9 @@ slides.forEach((s, i) => {
   g.push(`[${bi}:v]scale=-2:1920,crop=1080:1920,fps=${FPS},setsar=1,eq=brightness=-0.04:saturation=1.1,format=yuv420p[bg${i}]`);
   if (s.poster) {
     const pi = idx++; inputs.push('-loop', '1', '-t', String(dur), '-i', s.poster);
-    const pw = 960, ph = s.poster.includes('summary') ? 1067 : 1200;
-    g.push(`[${pi}:v]scale=2160:-2,setsar=1,zoompan=z='1+0.08*on/${frames}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=${pw}x${ph}:fps=${FPS},format=rgba,fade=t=in:st=0:d=0.25:alpha=1[fg${i}]`);
-    g.push(`[bg${i}][fg${i}]overlay=(W-w)/2:(H-h)/2+10:format=auto,format=yuv420p,fps=${FPS},settb=1/${FPS},setpts=PTS-STARTPTS[v${i}]`);
+    const pw = 960, dd = dur.toFixed(2);
+    g.push(`[${pi}:v]format=rgba,scale=w='trunc(${pw}*(1+0.08*t/${dd})/2)*2':h=-2:eval=frame,fade=t=in:st=0:d=0.25:alpha=1[fg${i}]`);
+    g.push(`[bg${i}][fg${i}]overlay=x='(W-w)/2':y='(H-h)/2+10':format=auto,format=yuv420p,fps=${FPS},settb=1/${FPS},setpts=PTS-STARTPTS[v${i}]`);
   } else {
     const ci = idx++; inputs.push('-loop', '1', '-t', String(dur), '-i', s.card);
     g.push(`[${ci}:v]format=rgba,scale=2160:3840,zoompan=z='1+0.06*on/${frames}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=1080x1920:fps=${FPS},format=rgba[fg${i}]`);
@@ -76,7 +77,7 @@ const imp = hits.map(h => `if(gt(t,${h.toFixed(3)}),0.8*exp(-7*(t-${h.toFixed(3)
 const wav = path.join(OUT, 'hype3.wav');
 execFileSync(FF, ['-y', '-loglevel', 'error', '-f', 'lavfi', '-i', `aevalsrc='(${kick}+${hat}+${riser}+${imp})*0.6':s=44100:d=${total.toFixed(2)}`, '-af', `highpass=f=30,acompressor=threshold=-14dB:ratio=3,alimiter=limit=0.9,afade=t=in:d=0.3,afade=t=out:st=${(total - 0.8).toFixed(2)}:d=0.8`, wav]);
 
-const mp4 = path.join(POST, `hype-clip-round${N}-v3.mp4`);
+const mp4 = path.join(POST, `hype-clip-round${N}-v4.mp4`);
 execFileSync(FF, ['-y', '-loglevel', 'error', ...inputs, '-i', wav, '-filter_complex', g.join(';'), '-map', '[vout]', '-map', `${idx}:a`,
   '-c:v', 'libx264', '-crf', '20', '-preset', 'medium', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', '-shortest', mp4], { stdio: 'inherit' });
 console.log('wrote', mp4, total.toFixed(1) + 's');
