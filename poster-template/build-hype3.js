@@ -69,15 +69,10 @@ for (let i = 1; i < slides.length; i++) {
 g.push(`[${last}]vignette=PI/6,fade=t=in:st=0:d=0.4,fade=t=out:st=${(total - 0.5).toFixed(2)}:d=0.5[vout]`);
 
 // ---- audio ----
-const bpm = 126, per = (60 / bpm).toFixed(4);
-const kick = `0.85*exp(-9*mod(t,${per}))*sin(2*PI*(52+120*exp(-38*mod(t,${per})))*mod(t,${per}))`;
-const hat = `0.10*(2*random(0)-1)*exp(-70*mod(t+${(per / 2).toFixed(4)},${per}))`;
-const riser = `0.07*(2*random(1)-1)*pow(t/${total.toFixed(2)},3)`;
-const imp = hits.map(h => `if(gt(t,${h.toFixed(3)}),0.8*exp(-7*(t-${h.toFixed(3)}))*sin(2*PI*46*(t-${h.toFixed(3)})),0)`).join('+');
 const wav = path.join(OUT, 'hype3.wav');
-execFileSync(FF, ['-y', '-loglevel', 'error', '-f', 'lavfi', '-i', `aevalsrc='(${kick}+${hat}+${riser}+${imp})*0.6':s=44100:d=${total.toFixed(2)}`, '-af', `highpass=f=30,acompressor=threshold=-14dB:ratio=3,alimiter=limit=0.9,afade=t=in:d=0.3,afade=t=out:st=${(total - 0.8).toFixed(2)}:d=0.8`, wav]);
+require('./synth-hype.js').render(total, hits, wav);   // cinematic synthesised track (see synth-hype.js)
 
-const mp4 = path.join(POST, `hype-clip-round${N}-v4.mp4`);
+const mp4 = path.join(POST, `hype-clip-round${N}-v5.mp4`);
 execFileSync(FF, ['-y', '-loglevel', 'error', ...inputs, '-i', wav, '-filter_complex', g.join(';'), '-map', '[vout]', '-map', `${idx}:a`,
   '-c:v', 'libx264', '-crf', '20', '-preset', 'medium', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', '-shortest', mp4], { stdio: 'inherit' });
 console.log('wrote', mp4, total.toFixed(1) + 's');
