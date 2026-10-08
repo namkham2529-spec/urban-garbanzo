@@ -70,9 +70,12 @@ g.push(`[${last}]vignette=PI/6,fade=t=in:st=0:d=0.4,fade=t=out:st=${(total - 0.5
 
 // ---- audio ----
 const wav = path.join(OUT, 'hype3.wav');
-require('./synth-hype.js').render(total, hits, wav);   // cinematic synthesised track (see synth-hype.js)
+if (process.env.MUSIC) {   // real music file (e.g. Gemini/Lyria): excerpt MUSIC_START..+total, loudness-normalised
+  const ms = process.env.MUSIC_START || '0';
+  execFileSync(FF, ['-y', '-loglevel', 'error', '-ss', ms, '-t', total.toFixed(2), '-i', process.env.MUSIC, '-vn', '-af', `loudnorm=I=-14:TP=-1.5:LRA=9,afade=t=in:d=0.2,afade=t=out:st=${(total - 1.0).toFixed(2)}:d=1.0`, '-ar', '44100', wav]);
+} else require('./synth-hype.js').render(total, hits, wav);   // cinematic synthesised track (see synth-hype.js)
 
-const mp4 = path.join(POST, `hype-clip-round${N}-v5.mp4`);
+const mp4 = path.join(POST, `hype-clip-round${N}-${process.env.MUSIC ? 'v6' : 'v5'}.mp4`);
 execFileSync(FF, ['-y', '-loglevel', 'error', ...inputs, '-i', wav, '-filter_complex', g.join(';'), '-map', '[vout]', '-map', `${idx}:a`,
   '-c:v', 'libx264', '-crf', '20', '-preset', 'medium', '-pix_fmt', 'yuv420p', '-r', String(FPS), '-c:a', 'aac', '-b:a', '160k', '-movflags', '+faststart', '-shortest', mp4], { stdio: 'inherit' });
 console.log('wrote', mp4, total.toFixed(1) + 's');
