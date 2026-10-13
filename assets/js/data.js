@@ -202,6 +202,14 @@ window.BLA = {
     { round:1, ageGroup:"U14", home:"เซเว่น", away:"ลำปลายมาศ", hs:4, as:0 },
     { round:1, ageGroup:"U12", home:"เซเว่น", away:"ลำปลายมาศ", hs:1, as:2 },
     { round:1, ageGroup:"U10", home:"เซเว่น", away:"ลำปลายมาศ", hs:0, as:1 },
-    { round:1, ageGroup:"U8", home:"เซเว่น", away:"ลำปลายมาศ", hs:2, as:3 }
+    { round:1, ageGroup:"U8", home:"เซเว่น", away:"ลำปลายมาศ", hs:2, as:3 },
+    { round:2, ageGroup:"U14", home:"ชัยกร อะคาเดมี่", away:"เซเว่น", hs:3, as:1 },
+    { round:2, ageGroup:"U12", home:"ชัยกร อะคาเดมี่", away:"เซเว่น", hs:1, as:3 },
+    { round:2, ageGroup:"U10", home:"ชัยกร อะคาเดมี่", away:"เซเว่น", hs:2, as:4 },
+    { round:2, ageGroup:"U8", home:"ชัยกร อะคาเดมี่", away:"เซเว่น", hs:0, as:4 },
+    { round:2, ageGroup:"U14", home:"เบส", away:"กองฟาง ยูไนเต็ด", hs:2, as:0 },
+    { round:2, ageGroup:"U12", home:"เบส", away:"กองฟาง ยูไนเต็ด", hs:5, as:4 },
+    { round:2, ageGroup:"U10", home:"เบส", away:"กองฟาง ยูไนเต็ด", hs:4, as:2 },
+    { round:2, ageGroup:"U8", home:"เบส", away:"กองฟาง ยูไนเต็ด", hs:0, as:0 }
   ]
 };
